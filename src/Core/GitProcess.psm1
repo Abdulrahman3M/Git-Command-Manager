@@ -13,13 +13,14 @@ function Invoke-Git {
     param([Parameter(Mandatory)][string[]]$Arguments, [string]$WorkingDirectory = '', [int]$TimeoutSec = 45)
     $git = Get-GitExecutable
     if (-not $git) { return [pscustomobject]@{ Started=$false; ExitCode=-1; StdOut=''; StdErr=''; TimedOut=$false; Error='Git Was Not Found.'; Arguments=@($Arguments) } }
-    $old = ''
+    if ($WorkingDirectory -and -not (Test-Path -LiteralPath $WorkingDirectory -PathType Container)) { return [pscustomobject]@{ Started=$false; ExitCode=-1; StdOut=''; StdErr=''; TimedOut=$false; Error='The Working Folder Does Not Exist.'; Arguments=@($Arguments) } }
+    $previousPrompt = $env:GIT_TERMINAL_PROMPT
+    $env:GIT_TERMINAL_PROMPT = '0'
     try {
-        if ($WorkingDirectory) { $old = (Get-Location).Path; Set-Location -LiteralPath $WorkingDirectory }
-        $result = Invoke-External -FilePath $git -Arguments $Arguments -TimeoutSec $TimeoutSec
-        $result | Add-Member -NotePropertyName Arguments -NotePropertyValue @($Arguments) -Force
-        return $result
-    } finally { if ($old) { Set-Location -LiteralPath $old } }
+    $result = Invoke-External -FilePath $git -Arguments $Arguments -TimeoutSec $TimeoutSec -WorkingDirectory $WorkingDirectory
+    $result | Add-Member -NotePropertyName Arguments -NotePropertyValue @($Arguments) -Force
+    return $result
+    } finally { $env:GIT_TERMINAL_PROMPT = $previousPrompt }
 }
 
 function Format-GitCommand { param([string[]]$Arguments) return 'git ' + (($Arguments | ForEach-Object { ConvertTo-ProcessArgument $_ }) -join ' ') }

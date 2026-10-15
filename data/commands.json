@@ -1,0 +1,2702 @@
+[
+  {
+    "Id": "git.add",
+    "Name": "add",
+    "Category": "Changes And Snapshots",
+    "SupportLevel": "Guided",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git add With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git add --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.am",
+    "Name": "am",
+    "Category": "Patches And Mail",
+    "SupportLevel": "Generic",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git am With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git am --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.annotate",
+    "Name": "annotate",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git annotate With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git annotate --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.apply",
+    "Name": "apply",
+    "Category": "Patches And Mail",
+    "SupportLevel": "Generic",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git apply With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git apply --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.archimport",
+    "Name": "archimport",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git archimport With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git archimport --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.archive",
+    "Name": "archive",
+    "Category": "Tags And Releases",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git archive With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git archive --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.askpass",
+    "Name": "askpass",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git askpass With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git askpass --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.askyesno",
+    "Name": "askyesno",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git askyesno With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git askyesno --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.attributes",
+    "Name": "attributes",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git attributes With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git attributes --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.backfill",
+    "Name": "backfill",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git backfill With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git backfill --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.bisect",
+    "Name": "bisect",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git bisect With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git bisect --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.blame",
+    "Name": "blame",
+    "Category": "Inspect And Diagnose",
+    "SupportLevel": "Generic",
+    "RiskTier": "ReadOnly",
+    "Summary": "Run Git blame With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git blame --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Reads Repository Information And Does Not Change Files Or History.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.branch",
+    "Name": "branch",
+    "Category": "Branches And Integration",
+    "SupportLevel": "Guided",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git branch With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git branch --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.bugreport",
+    "Name": "bugreport",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git bugreport With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git bugreport --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.bundle",
+    "Name": "bundle",
+    "Category": "Remotes And Collaboration",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git bundle With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git bundle --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.cat-file",
+    "Name": "cat-file",
+    "Category": "Objects And References",
+    "SupportLevel": "Generic",
+    "RiskTier": "ReadOnly",
+    "Summary": "Run Git cat-file With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git cat-file --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Reads Repository Information And Does Not Change Files Or History.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.check-attr",
+    "Name": "check-attr",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git check-attr With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git check-attr --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.check-ignore",
+    "Name": "check-ignore",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git check-ignore With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git check-ignore --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.check-mailmap",
+    "Name": "check-mailmap",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git check-mailmap With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git check-mailmap --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.check-ref-format",
+    "Name": "check-ref-format",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git check-ref-format With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git check-ref-format --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.checkout",
+    "Name": "checkout",
+    "Category": "Branches And Integration",
+    "SupportLevel": "Generic",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git checkout With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git checkout --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.checkout-index",
+    "Name": "checkout-index",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git checkout-index With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git checkout-index --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.cherry",
+    "Name": "cherry",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git cherry With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git cherry --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.cherry-pick",
+    "Name": "cherry-pick",
+    "Category": "Branches And Integration",
+    "SupportLevel": "Generic",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git cherry-pick With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git cherry-pick --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.citool",
+    "Name": "citool",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git citool With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git citool --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.clean",
+    "Name": "clean",
+    "Category": "Changes And Snapshots",
+    "SupportLevel": "Generic",
+    "RiskTier": "Destructive",
+    "Summary": "Run Git clean With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git clean --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Can Remove Data Or Rewrite History. Review The Exact Target And Confirm Explicitly.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.cli",
+    "Name": "cli",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git cli With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git cli --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.clone",
+    "Name": "clone",
+    "Category": "Remotes And Collaboration",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git clone With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git clone --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.column",
+    "Name": "column",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git column With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git column --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.commit",
+    "Name": "commit",
+    "Category": "Changes And Snapshots",
+    "SupportLevel": "Guided",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git commit With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git commit --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.commit-graph",
+    "Name": "commit-graph",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git commit-graph With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git commit-graph --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.commit-tree",
+    "Name": "commit-tree",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git commit-tree With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git commit-tree --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.config",
+    "Name": "config",
+    "Category": "Setup And Configuration",
+    "SupportLevel": "Generic",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git config With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git config --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.count-objects",
+    "Name": "count-objects",
+    "Category": "Repository Maintenance",
+    "SupportLevel": "Generic",
+    "RiskTier": "ReadOnly",
+    "Summary": "Run Git count-objects With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git count-objects --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Reads Repository Information And Does Not Change Files Or History.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.credential",
+    "Name": "credential",
+    "Category": "Security And Signing",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git credential With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git credential --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.credential-cache",
+    "Name": "credential-cache",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git credential-cache With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git credential-cache --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.credential-helper-selector",
+    "Name": "credential-helper-selector",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git credential-helper-selector With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git credential-helper-selector --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.credential-manager",
+    "Name": "credential-manager",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git credential-manager With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git credential-manager --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.credential-store",
+    "Name": "credential-store",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git credential-store With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git credential-store --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.cvsexportcommit",
+    "Name": "cvsexportcommit",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git cvsexportcommit With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git cvsexportcommit --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.cvsimport",
+    "Name": "cvsimport",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git cvsimport With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git cvsimport --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.cvsserver",
+    "Name": "cvsserver",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git cvsserver With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git cvsserver --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.daemon",
+    "Name": "daemon",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git daemon With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git daemon --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.describe",
+    "Name": "describe",
+    "Category": "Inspect And Diagnose",
+    "SupportLevel": "Generic",
+    "RiskTier": "ReadOnly",
+    "Summary": "Run Git describe With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git describe --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Reads Repository Information And Does Not Change Files Or History.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.diagnose",
+    "Name": "diagnose",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git diagnose With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git diagnose --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.diff",
+    "Name": "diff",
+    "Category": "Inspect And Diagnose",
+    "SupportLevel": "Generic",
+    "RiskTier": "ReadOnly",
+    "Summary": "Run Git diff With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git diff --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Reads Repository Information And Does Not Change Files Or History.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.diff-files",
+    "Name": "diff-files",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git diff-files With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git diff-files --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.diff-index",
+    "Name": "diff-index",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git diff-index With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git diff-index --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.diff-pairs",
+    "Name": "diff-pairs",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git diff-pairs With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git diff-pairs --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.diff-tree",
+    "Name": "diff-tree",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git diff-tree With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git diff-tree --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.difftool",
+    "Name": "difftool",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git difftool With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git difftool --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.fast-export",
+    "Name": "fast-export",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git fast-export With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git fast-export --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.fast-import",
+    "Name": "fast-import",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git fast-import With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git fast-import --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.fetch",
+    "Name": "fetch",
+    "Category": "Remotes And Collaboration",
+    "SupportLevel": "Guided",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git fetch With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git fetch --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.fetch-pack",
+    "Name": "fetch-pack",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git fetch-pack With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git fetch-pack --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.filter-branch",
+    "Name": "filter-branch",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "Destructive",
+    "Summary": "Run Git filter-branch With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git filter-branch --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Can Remove Data Or Rewrite History. Review The Exact Target And Confirm Explicitly.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.fmt-merge-msg",
+    "Name": "fmt-merge-msg",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git fmt-merge-msg With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git fmt-merge-msg --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.for-each-ref",
+    "Name": "for-each-ref",
+    "Category": "Objects And References",
+    "SupportLevel": "Generic",
+    "RiskTier": "ReadOnly",
+    "Summary": "Run Git for-each-ref With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git for-each-ref --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Reads Repository Information And Does Not Change Files Or History.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.for-each-repo",
+    "Name": "for-each-repo",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git for-each-repo With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git for-each-repo --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.format-bundle",
+    "Name": "format-bundle",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git format-bundle With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git format-bundle --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.format-chunk",
+    "Name": "format-chunk",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git format-chunk With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git format-chunk --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.format-commit-graph",
+    "Name": "format-commit-graph",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git format-commit-graph With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git format-commit-graph --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.format-index",
+    "Name": "format-index",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git format-index With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git format-index --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.format-pack",
+    "Name": "format-pack",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git format-pack With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git format-pack --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.format-patch",
+    "Name": "format-patch",
+    "Category": "Patches And Mail",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git format-patch With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git format-patch --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.format-rev",
+    "Name": "format-rev",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git format-rev With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git format-rev --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.format-signature",
+    "Name": "format-signature",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git format-signature With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git format-signature --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.fsck",
+    "Name": "fsck",
+    "Category": "Inspect And Diagnose",
+    "SupportLevel": "Generic",
+    "RiskTier": "ReadOnly",
+    "Summary": "Run Git fsck With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git fsck --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Reads Repository Information And Does Not Change Files Or History.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.gc",
+    "Name": "gc",
+    "Category": "Repository Maintenance",
+    "SupportLevel": "Generic",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git gc With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git gc --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.get-tar-commit-id",
+    "Name": "get-tar-commit-id",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git get-tar-commit-id With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git get-tar-commit-id --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.gitk",
+    "Name": "gitk",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git gitk With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git gitk --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.gitweb",
+    "Name": "gitweb",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git gitweb With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git gitweb --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.grep",
+    "Name": "grep",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git grep With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git grep --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.gui",
+    "Name": "gui",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git gui With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git gui --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.hash-object",
+    "Name": "hash-object",
+    "Category": "Objects And References",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git hash-object With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git hash-object --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.help",
+    "Name": "help",
+    "Category": "Setup And Configuration",
+    "SupportLevel": "Generic",
+    "RiskTier": "ReadOnly",
+    "Summary": "Run Git help With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git help --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Reads Repository Information And Does Not Change Files Or History.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.history",
+    "Name": "history",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git history With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git history --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.hook",
+    "Name": "hook",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git hook With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git hook --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.hooks",
+    "Name": "hooks",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git hooks With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git hooks --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.http-backend",
+    "Name": "http-backend",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git http-backend With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git http-backend --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.ignore",
+    "Name": "ignore",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git ignore With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git ignore --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.imap-send",
+    "Name": "imap-send",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git imap-send With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git imap-send --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.index-pack",
+    "Name": "index-pack",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git index-pack With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git index-pack --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.init",
+    "Name": "init",
+    "Category": "Setup And Configuration",
+    "SupportLevel": "Guided",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git init With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git init --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.instaweb",
+    "Name": "instaweb",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git instaweb With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git instaweb --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.interpret-trailers",
+    "Name": "interpret-trailers",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git interpret-trailers With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git interpret-trailers --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.last-modified",
+    "Name": "last-modified",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git last-modified With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git last-modified --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.lfs",
+    "Name": "lfs",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git lfs With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git lfs --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.log",
+    "Name": "log",
+    "Category": "Inspect And Diagnose",
+    "SupportLevel": "Generic",
+    "RiskTier": "ReadOnly",
+    "Summary": "Run Git log With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git log --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Reads Repository Information And Does Not Change Files Or History.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.ls-files",
+    "Name": "ls-files",
+    "Category": "Index And Trees",
+    "SupportLevel": "Generic",
+    "RiskTier": "ReadOnly",
+    "Summary": "Run Git ls-files With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git ls-files --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Reads Repository Information And Does Not Change Files Or History.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.ls-remote",
+    "Name": "ls-remote",
+    "Category": "Remotes And Collaboration",
+    "SupportLevel": "Generic",
+    "RiskTier": "ReadOnly",
+    "Summary": "Run Git ls-remote With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git ls-remote --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Reads Repository Information And Does Not Change Files Or History.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.ls-tree",
+    "Name": "ls-tree",
+    "Category": "Index And Trees",
+    "SupportLevel": "Generic",
+    "RiskTier": "ReadOnly",
+    "Summary": "Run Git ls-tree With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git ls-tree --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Reads Repository Information And Does Not Change Files Or History.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.mailinfo",
+    "Name": "mailinfo",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git mailinfo With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git mailinfo --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.mailmap",
+    "Name": "mailmap",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git mailmap With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git mailmap --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.mailsplit",
+    "Name": "mailsplit",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git mailsplit With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git mailsplit --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.maintenance",
+    "Name": "maintenance",
+    "Category": "Repository Maintenance",
+    "SupportLevel": "Generic",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git maintenance With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git maintenance --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.merge",
+    "Name": "merge",
+    "Category": "Branches And Integration",
+    "SupportLevel": "Generic",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git merge With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git merge --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.merge-base",
+    "Name": "merge-base",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git merge-base With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git merge-base --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.merge-file",
+    "Name": "merge-file",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git merge-file With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git merge-file --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.merge-index",
+    "Name": "merge-index",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git merge-index With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git merge-index --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.merge-one-file",
+    "Name": "merge-one-file",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git merge-one-file With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git merge-one-file --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.merge-tree",
+    "Name": "merge-tree",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git merge-tree With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git merge-tree --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.mergetool",
+    "Name": "mergetool",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git mergetool With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git mergetool --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.mktag",
+    "Name": "mktag",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git mktag With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git mktag --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.mktree",
+    "Name": "mktree",
+    "Category": "Index And Trees",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git mktree With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git mktree --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.modules",
+    "Name": "modules",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git modules With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git modules --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.multi-pack-index",
+    "Name": "multi-pack-index",
+    "Category": "Repository Maintenance",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git multi-pack-index With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git multi-pack-index --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.mv",
+    "Name": "mv",
+    "Category": "Changes And Snapshots",
+    "SupportLevel": "Generic",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git mv With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git mv --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.name-rev",
+    "Name": "name-rev",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git name-rev With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git name-rev --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.notes",
+    "Name": "notes",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git notes With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git notes --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.p4",
+    "Name": "p4",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git p4 With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git p4 --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.pack-objects",
+    "Name": "pack-objects",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git pack-objects With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git pack-objects --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.pack-redundant",
+    "Name": "pack-redundant",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git pack-redundant With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git pack-redundant --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.pack-refs",
+    "Name": "pack-refs",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git pack-refs With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git pack-refs --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.patch-id",
+    "Name": "patch-id",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git patch-id With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git patch-id --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.protocol-capabilities",
+    "Name": "protocol-capabilities",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git protocol-capabilities With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git protocol-capabilities --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.protocol-common",
+    "Name": "protocol-common",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git protocol-common With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git protocol-common --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.protocol-http",
+    "Name": "protocol-http",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git protocol-http With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git protocol-http --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.protocol-pack",
+    "Name": "protocol-pack",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git protocol-pack With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git protocol-pack --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.protocol-v2",
+    "Name": "protocol-v2",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git protocol-v2 With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git protocol-v2 --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.prune",
+    "Name": "prune",
+    "Category": "Repository Maintenance",
+    "SupportLevel": "Generic",
+    "RiskTier": "Destructive",
+    "Summary": "Run Git prune With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git prune --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Can Remove Data Or Rewrite History. Review The Exact Target And Confirm Explicitly.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.prune-packed",
+    "Name": "prune-packed",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git prune-packed With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git prune-packed --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.pull",
+    "Name": "pull",
+    "Category": "Remotes And Collaboration",
+    "SupportLevel": "Guided",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git pull With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git pull --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.push",
+    "Name": "push",
+    "Category": "Remotes And Collaboration",
+    "SupportLevel": "Guided",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git push With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git push --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.quiltimport",
+    "Name": "quiltimport",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git quiltimport With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git quiltimport --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.range-diff",
+    "Name": "range-diff",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git range-diff With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git range-diff --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.read-tree",
+    "Name": "read-tree",
+    "Category": "Index And Trees",
+    "SupportLevel": "Generic",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git read-tree With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git read-tree --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.rebase",
+    "Name": "rebase",
+    "Category": "Branches And Integration",
+    "SupportLevel": "Generic",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git rebase With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git rebase --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.reflog",
+    "Name": "reflog",
+    "Category": "Inspect And Diagnose",
+    "SupportLevel": "Generic",
+    "RiskTier": "ReadOnly",
+    "Summary": "Run Git reflog With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git reflog --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Reads Repository Information And Does Not Change Files Or History.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.refs",
+    "Name": "refs",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git refs With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git refs --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.remote",
+    "Name": "remote",
+    "Category": "Remotes And Collaboration",
+    "SupportLevel": "Guided",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git remote With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git remote --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.repack",
+    "Name": "repack",
+    "Category": "Repository Maintenance",
+    "SupportLevel": "Generic",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git repack With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git repack --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.replace",
+    "Name": "replace",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git replace With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git replace --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.replay",
+    "Name": "replay",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git replay With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git replay --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.repo",
+    "Name": "repo",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git repo With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git repo --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.repository-layout",
+    "Name": "repository-layout",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git repository-layout With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git repository-layout --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.request-pull",
+    "Name": "request-pull",
+    "Category": "Remotes And Collaboration",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git request-pull With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git request-pull --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.rerere",
+    "Name": "rerere",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git rerere With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git rerere --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.reset",
+    "Name": "reset",
+    "Category": "Changes And Snapshots",
+    "SupportLevel": "Guided",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git reset With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git reset --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.restore",
+    "Name": "restore",
+    "Category": "Changes And Snapshots",
+    "SupportLevel": "Guided",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git restore With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git restore --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.rev-list",
+    "Name": "rev-list",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git rev-list With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git rev-list --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.rev-parse",
+    "Name": "rev-parse",
+    "Category": "Objects And References",
+    "SupportLevel": "Generic",
+    "RiskTier": "ReadOnly",
+    "Summary": "Run Git rev-parse With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git rev-parse --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Reads Repository Information And Does Not Change Files Or History.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.revert",
+    "Name": "revert",
+    "Category": "Branches And Integration",
+    "SupportLevel": "Generic",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git revert With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git revert --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.revisions",
+    "Name": "revisions",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git revisions With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git revisions --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.rm",
+    "Name": "rm",
+    "Category": "Changes And Snapshots",
+    "SupportLevel": "Generic",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git rm With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git rm --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.scalar",
+    "Name": "scalar",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git scalar With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git scalar --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.send-email",
+    "Name": "send-email",
+    "Category": "Patches And Mail",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git send-email With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git send-email --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.send-pack",
+    "Name": "send-pack",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git send-pack With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git send-pack --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.sh-i18n",
+    "Name": "sh-i18n",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git sh-i18n With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git sh-i18n --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.sh-setup",
+    "Name": "sh-setup",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git sh-setup With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git sh-setup --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.shortlog",
+    "Name": "shortlog",
+    "Category": "Inspect And Diagnose",
+    "SupportLevel": "Generic",
+    "RiskTier": "ReadOnly",
+    "Summary": "Run Git shortlog With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git shortlog --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Reads Repository Information And Does Not Change Files Or History.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.show",
+    "Name": "show",
+    "Category": "Inspect And Diagnose",
+    "SupportLevel": "Generic",
+    "RiskTier": "ReadOnly",
+    "Summary": "Run Git show With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git show --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Reads Repository Information And Does Not Change Files Or History.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.show-branch",
+    "Name": "show-branch",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git show-branch With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git show-branch --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.show-index",
+    "Name": "show-index",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git show-index With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git show-index --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.show-ref",
+    "Name": "show-ref",
+    "Category": "Objects And References",
+    "SupportLevel": "Generic",
+    "RiskTier": "ReadOnly",
+    "Summary": "Run Git show-ref With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git show-ref --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Reads Repository Information And Does Not Change Files Or History.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.sparse-checkout",
+    "Name": "sparse-checkout",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git sparse-checkout With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git sparse-checkout --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.stash",
+    "Name": "stash",
+    "Category": "Changes And Snapshots",
+    "SupportLevel": "Generic",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git stash With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git stash --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.status",
+    "Name": "status",
+    "Category": "Inspect And Diagnose",
+    "SupportLevel": "Generic",
+    "RiskTier": "ReadOnly",
+    "Summary": "Run Git status With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git status --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Reads Repository Information And Does Not Change Files Or History.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.stripspace",
+    "Name": "stripspace",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git stripspace With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git stripspace --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.submodule",
+    "Name": "submodule",
+    "Category": "Submodules And Dependencies",
+    "SupportLevel": "Generic",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git submodule With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git submodule --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.survey",
+    "Name": "survey",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git survey With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git survey --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.svn",
+    "Name": "svn",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git svn With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git svn --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.switch",
+    "Name": "switch",
+    "Category": "Branches And Integration",
+    "SupportLevel": "Guided",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git switch With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git switch --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.symbolic-ref",
+    "Name": "symbolic-ref",
+    "Category": "Objects And References",
+    "SupportLevel": "Generic",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git symbolic-ref With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git symbolic-ref --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.tag",
+    "Name": "tag",
+    "Category": "Tags And Releases",
+    "SupportLevel": "Generic",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git tag With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git tag --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.unpack-file",
+    "Name": "unpack-file",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git unpack-file With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git unpack-file --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.unpack-objects",
+    "Name": "unpack-objects",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git unpack-objects With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git unpack-objects --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.update-git-for-windows",
+    "Name": "update-git-for-windows",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git update-git-for-windows With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git update-git-for-windows --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.update-index",
+    "Name": "update-index",
+    "Category": "Index And Trees",
+    "SupportLevel": "Generic",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git update-index With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git update-index --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.update-ref",
+    "Name": "update-ref",
+    "Category": "Objects And References",
+    "SupportLevel": "Generic",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git update-ref With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git update-ref --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.update-server-info",
+    "Name": "update-server-info",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git update-server-info With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git update-server-info --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.url-parse",
+    "Name": "url-parse",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git url-parse With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git url-parse --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.var",
+    "Name": "var",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git var With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git var --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.verify-commit",
+    "Name": "verify-commit",
+    "Category": "Security And Signing",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git verify-commit With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git verify-commit --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.verify-pack",
+    "Name": "verify-pack",
+    "Category": "Repository Maintenance",
+    "SupportLevel": "Generic",
+    "RiskTier": "ReadOnly",
+    "Summary": "Run Git verify-pack With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git verify-pack --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Reads Repository Information And Does Not Change Files Or History.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.verify-tag",
+    "Name": "verify-tag",
+    "Category": "Security And Signing",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git verify-tag With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git verify-tag --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.version",
+    "Name": "version",
+    "Category": "Setup And Configuration",
+    "SupportLevel": "Generic",
+    "RiskTier": "ReadOnly",
+    "Summary": "Run Git version With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git version --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Reads Repository Information And Does Not Change Files Or History.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.whatchanged",
+    "Name": "whatchanged",
+    "Category": "Other And Unclassified",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git whatchanged With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git whatchanged --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.worktree",
+    "Name": "worktree",
+    "Category": "Branches And Integration",
+    "SupportLevel": "Generic",
+    "RiskTier": "RequiresReview",
+    "Summary": "Run Git worktree With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git worktree --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Command Is Unclassified. Review Its Documentation And Arguments Before Running It.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  },
+  {
+    "Id": "git.write-tree",
+    "Name": "write-tree",
+    "Category": "Index And Trees",
+    "SupportLevel": "Generic",
+    "RiskTier": "Mutating",
+    "Summary": "Run Git write-tree With A Preview And Explicit Consent When Needed.",
+    "HelpSource": "git write-tree --help",
+    "Prerequisites": [
+      "Git"
+    ],
+    "ParameterSchema": [],
+    "SideEffects": "This Operation Changes Repository State Or Sends Data To A Remote. It Requires Confirmation.",
+    "Verification": "Check Exit Code And Refresh Repository State"
+  }
+]

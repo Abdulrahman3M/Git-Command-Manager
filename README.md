@@ -8,7 +8,9 @@ Git Command Manager is a keyboard-first PowerShell terminal application for disc
 - **Command Palette** searches every command discovered from the installed Git executable.
 - **Assistant Console** guides users through status, initialization, and command discovery.
 
-All interfaces use one Git process boundary, command inventory, safety policy, workspace parser, and persistent settings store. Select **Interface Mode** from the dashboard to change the active or preferred interface.
+All interfaces use one Git process boundary, command inventory, safety policy, workspace parser, and persistent settings store. Select **Interface Mode** from the dashboard to change the active or preferred interface. Your selection is saved per user.
+
+The dashboard and assistant provide guided workflows for status, initialization, staging one selected file, commits, branch creation, remotes, fetch, fast-forward-only pull, push, and recovery. Every discovered Git command remains available in the explorer. Generic arguments are split on spaces; use the guided workflows for file paths with spaces or complex quoting.
 
 ## Requirements
 
@@ -26,7 +28,7 @@ Use `-Version` to print the application version. A redirected session requires `
 
 ## Safety
 
-Git is started only with argument arrays. Read-only commands run directly; state-changing and destructive actions show the exact command and require confirmation. The application never installs or updates Git, creates a repository without consent, or sends credentials.
+Git is started only with argument arrays and a process working directory. Read-only commands run directly; state-changing, destructive, and unclassified actions require review. Remote URLs are hidden from confirmation and success messages. The application never installs or updates Git, creates a repository without consent, or sends credentials.
 
 ## Verification Status
 

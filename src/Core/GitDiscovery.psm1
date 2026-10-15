@@ -4,9 +4,9 @@ Set-StrictMode -Version 2.0
 function Get-GitCommandInventory {
     param([string]$WorkingDirectory = '')
     $r = Invoke-Git -Arguments @('help','-a') -WorkingDirectory $WorkingDirectory -TimeoutSec 20
-    if (-not $r.Started -or $r.ExitCode -ne 0) { return @() }
+    if (-not $r.Started) { return @() }
     $names = New-Object 'System.Collections.Generic.HashSet[string]' ([System.StringComparer]::OrdinalIgnoreCase)
-    foreach ($match in [regex]::Matches($r.StdOut, '(?m)^\s{2,}([a-z][a-z0-9-]+)(?:\s|$)')) { [void]$names.Add($match.Groups[1].Value) }
+    foreach ($match in [regex]::Matches($r.StdOut + "`n" + $r.StdErr, '(?m)^\s{2,}([a-z][a-z0-9-]+)(?:\s|$)')) { [void]$names.Add($match.Groups[1].Value) }
     return @($names | Sort-Object | ForEach-Object { New-GitCommandRecord -Name $_ })
 }
 
@@ -27,7 +27,8 @@ function Get-GitCommandCategory {
 function New-GitCommandRecord {
     param([Parameter(Mandatory)][string]$Name)
     $risk = Get-GitRiskTier -Command $Name
-    $level = if ($risk -eq 'ReadOnly') { 'Generic' } elseif ($Name -in @('status','init','add','commit','branch','switch','remote','fetch','pull','push','restore','reset')) { 'Guided' } else { 'Generic' }
+    $guided = @('status','init','add','commit','branch','switch','remote','fetch','pull','push','restore','reset') -contains $Name
+    $level = if ($risk -eq 'ReadOnly') { 'Generic' } elseif ($guided) { 'Guided' } else { 'Generic' }
     return [pscustomobject]@{ Id=('git.' + $Name); Name=$Name; Category=(Get-GitCommandCategory $Name); SupportLevel=$level; RiskTier=$risk; Summary=('Run Git ' + $Name + ' With A Preview And Explicit Consent When Needed.'); HelpSource=('git ' + $Name + ' --help'); Prerequisites=@('Git'); ParameterSchema=@(); SideEffects=(Get-RiskExplanation $risk); Verification='Check Exit Code And Refresh Repository State' }
 }
 

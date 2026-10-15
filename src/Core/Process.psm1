@@ -28,12 +28,13 @@ function ConvertTo-ProcessArgumentString {
 
 function Invoke-External {
     # Returns Started / ExitCode / StdOut / StdErr / TimedOut / Error. Output is read asynchronously (no pipe deadlock).
-    param([Parameter(Mandatory)][string]$FilePath, [string[]]$Arguments = @(), [int]$TimeoutSec = 60)
+    param([Parameter(Mandatory)][string]$FilePath, [string[]]$Arguments = @(), [int]$TimeoutSec = 60, [string]$WorkingDirectory = '')
     $res = [pscustomobject]@{ Started = $false; ExitCode = -1; StdOut = ''; StdErr = ''; TimedOut = $false; Error = '' }
     $p = $null
     try {
         $psi = New-Object System.Diagnostics.ProcessStartInfo
         $psi.FileName = $FilePath
+        if ($WorkingDirectory) { $psi.WorkingDirectory = [System.IO.Path]::GetFullPath($WorkingDirectory) }
         $psi.Arguments = ConvertTo-ProcessArgumentString $Arguments
         $psi.UseShellExecute = $false
         $psi.CreateNoWindow = $true
