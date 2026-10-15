@@ -13,5 +13,5 @@ Updated 2026-10-15.
 | P03-P04 | Interactive visual walkthrough | Manual Windows Terminal walkthrough | UNVERIFIED | Not run in this session | No |
 | P04 | Linux PowerShell 7 | CI/local runtime | UNVERIFIED | Not run | No |
 | P04 | GitHub Actions | Hosted workflow | UNVERIFIED | No hosted run performed | No |
-| P05 | Private GitHub publication | Safe merge and push to owner-selected private repo | PENDING - user authorized; final external action remains | Phase-Reports/P05-Private-GitHub-Publication.md | Yes |
+| P05 | Private GitHub publication | Safe merge and push to owner-selected private repo | PENDING - safe history merge is complete; authorized final push and verification remain | Phase-Reports/P05-Private-GitHub-Publication.md | Yes |
 | P05 | GitHub CLI page controls | Live gh repo create/edit | UNVERIFIED - gh not installed | Argument builders and validation covered by tests | No |
