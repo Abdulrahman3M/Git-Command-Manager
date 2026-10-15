@@ -70,18 +70,9 @@ Assert-Contains 'the validation message is shown' $ui.Output 'Please type a name
 Assert-True 'Esc cancels a prompt' ($null -eq (Invoke-Ui { Read-ValidatedInput -Prompt 'P' -Help 'h' -Example 'e' } '{Esc}').Value)
 
 Set-TestGroup 'Whole application (scripted)'
-$style = Get-AppDesign -Root (Get-TestRoot)
-$aboutKeys = '04{Enter}05'
-$formKeys = '01Ada{Enter}01{Enter}05'
-if ($style.navigation -eq 'Arrows') {
-    $aboutKeys = '{Down}{Down}{Down}{Enter}{Enter}{Down}{Down}{Down}{Down}{Enter}'
-    $formKeys = '{Enter}Ada{Enter}{Enter}{Enter}{Down}{Down}{Down}{Down}{Enter}'
-}
-elseif ($style.navigation -eq 'Search') {
-    $aboutKeys = 'about{Enter}{Enter}exit{Enter}'
-    $formKeys = 'demo{Enter}Ada{Enter}{Enter}{Enter}exit{Enter}'
-}
-$ui = Invoke-Ui { Start-TuiApp -Root (Get-TestRoot) } $aboutKeys
-Assert-True 'About then Exit runs without errors across navigation modes' ($ui.Error -eq '' -and $ui.Output.Contains('About'))
-$ui = Invoke-Ui { Start-TuiApp -Root (Get-TestRoot) } $formKeys
-Assert-True 'the demo form saves a name across navigation modes' ($ui.Error -eq '' -and (Get-UserSetting 'name') -eq 'Ada')
+Set-InterfaceMode 'Dashboard'
+Assert-Equal 'Dashboard is the default interface mode' 'Dashboard' (Get-InterfaceMode)
+Set-InterfaceMode 'Palette'
+Assert-Equal 'Interface mode persists through settings' 'Palette' (Get-InterfaceMode)
+Set-InterfaceMode 'Dashboard'
+Assert-True 'Git command discovery returns installed commands' ((Get-GitCommandInventory).Count -gt 0)

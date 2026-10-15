@@ -1,21 +1,33 @@
 # Git Command Manager
 
-A PowerShell terminal (TUI) application generated from the *PowerShell TUI App Designer* skill.
+Git Command Manager is a keyboard-first PowerShell terminal application for discovering and running installed Git commands with previews, risk explanations, and explicit confirmations.
 
-Run (Windows PowerShell 5.1, PowerShell 7 on Windows, PowerShell 7 on Linux/macOS):
+## Interfaces
 
-```text
-Windows:   Git-Command-Manager.bat            (or: powershell -NoProfile -File .\Start-Git-Command-Manager.ps1)
-Linux:     ./Git-Command-Manager.sh            (or: pwsh -NoProfile -File ./Start-Git-Command-Manager.ps1)
-Version:   Start-Git-Command-Manager.ps1 -Version
-Demo/CI:   Start-Git-Command-Manager.ps1 -ScriptedInput '04{Enter}05'
-Tests:     tests/Run-Tests.ps1
+- **Task Dashboard** is the default interface and provides workspace state and organized actions.
+- **Command Palette** searches every command discovered from the installed Git executable.
+- **Assistant Console** guides users through status, initialization, and command discovery.
+
+All interfaces use one Git process boundary, command inventory, safety policy, workspace parser, and persistent settings store. Select **Interface Mode** from the dashboard to change the active or preferred interface.
+
+## Requirements
+
+- Git on PATH
+- PowerShell 7 on Windows, Linux, or macOS; Windows PowerShell 5.1 is supported on Windows
+- Windows Terminal is recommended on Windows
+
+## Run
+
+```powershell
+pwsh -NoProfile -File .\Start-Git-Command-Manager.ps1
 ```
 
-Every option is a two-digit number (`01`, `02` ...); type the number or use the arrow keys and Enter; `Esc` goes back; `Ctrl+C` quits.
-Icons are chosen automatically (emoji, simple symbols or plain text); override with `GIT_COMMAND_MANAGER_ICONS=emoji|symbol|ascii`.
-Settings and the log live in the per-user data folder (`%APPDATA%\Git-Command-Manager` on Windows, `~/.config/Git-Command-Manager` on Linux; override with `GIT_COMMAND_MANAGER_DATA_DIR`).
+Use `-Version` to print the application version. A redirected session requires `-ScriptedInput` and exits with code 2 otherwise.
 
-## Modern Design Options
+## Safety
 
-The generated app ships with a configurable interactive design wizard under **Customize interface**. Choose any of 20 functional layout presets, arrow/number/hybrid/search navigation, emoji/symbol/ASCII/none icons, rich/subtle/no colors, and muted/shaded/inline/panel/off descriptions. Your selection is stored per user. The generator also accepts `-Preset`, `-Navigation`, `-IconMode`, `-ColorMode`, and `-DescriptionStyle`.
+Git is started only with argument arrays. Read-only commands run directly; state-changing and destructive actions show the exact command and require confirmation. The application never installs or updates Git, creates a repository without consent, or sends credentials.
+
+## Verification Status
+
+PowerShell 7 and Windows PowerShell 5.1 command discovery were run locally. Real interactive flicker observation, Linux execution, and GitHub CI are not yet verified.

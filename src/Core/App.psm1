@@ -1,170 +1,22 @@
-# App.psm1 - the application: main menu loop and the actions. Business logic lives in Core modules, never in the TUI modules.
+# App.psm1 - UI orchestration. Domain work is delegated to Core modules.
 Set-StrictMode -Version 2.0
-
-# Load design defaults supplied by New-TuiProject and prefer saved choices.
-function Get-AppDesign {
-    param([Parameter(Mandatory)][string]$Root)
-    $d = @{ preset='classic-numbered'; navigation='Hybrid'; icons='Auto'; colors='Auto'; descriptions='Muted' }
-    $file = Join-Path (Join-Path $Root 'config') 'design.json'
-    if (Test-Path -LiteralPath $file) {
-        try {
-            $j = [System.IO.File]::ReadAllText($file) | ConvertFrom-Json
-            foreach ($key in @('preset','navigation','icons','colors','descriptions')) {
-                if ($j.PSObject.Properties[$key]) { $d[$key] = [string]$j.$key }
-            }
-        } catch { Write-AppLog ('Invalid design config: ' + $_.Exception.Message) 'WARNING' }
-    }
-    foreach ($key in @('preset','navigation','icons','colors','descriptions')) {
-        $stored = Get-UserSetting -Name ('design_' + $key)
-        if ($stored) { $d[$key] = $stored }
-    }
-    if ($d.navigation -notin @('Arrows','Numbers','Hybrid','Search')) { $d.navigation = 'Hybrid' }
-    if ($d.icons -notin @('Auto','Emoji','Symbol','Ascii','None')) { $d.icons = 'Auto' }
-    if ($d.colors -notin @('Auto','Full','Subtle','None')) { $d.colors = 'Auto' }
-    if ($d.descriptions -notin @('Muted','Shade','Inline','Panel','Off')) { $d.descriptions = 'Muted' }
-    try { [void](Get-TuiPreset -Id $d.preset) } catch { $d.preset = 'classic-numbered' }
-    return $d
-}
-function Apply-AppDesign {
-    param([Parameter(Mandatory)][string]$Root)
-    $d = Get-AppDesign -Root $Root
-    Set-TuiMenuStyle -Navigation $d.navigation -Preset $d.preset -Descriptions $d.descriptions
-    Set-TuiColorStyle -Mode $d.colors -Accent (Get-TuiPreset -Id $d.preset).Accent
-    Set-IconTier -Tier $d.icons
-}
-function Invoke-DesignWizard {
-    param([Parameter(Mandatory)][string]$Root)
-    $catalog = @(Get-TuiPresetCatalog)
-    $items = @()
-    foreach ($p in $catalog) { $items += (New-MenuItem -Label $p.Name -Desc ($p.Layout + ' layout, ' + $p.Density + ' spacing.') -Value $p.Id -Icon 'Form') }
-    $preset = Show-Menu -Title 'Choose a layout' -Description '20 product-neutral styles, including Classic Numbered.' -Items $items -Navigation Search -Preset 'command-palette'
-    if (-not $preset) { return }
-    $choices = @(
-        (New-MenuItem -Label 'Arrow keys + Enter' -Desc 'No numeric prefixes.' -Value 'Arrows'),
-        (New-MenuItem -Label 'Numbered choices' -Desc 'Type a menu item number.' -Value 'Numbers'),
-        (New-MenuItem -Label 'Numbers and arrows' -Desc 'Both keyboard selection modes.' -Value 'Hybrid'),
-        (New-MenuItem -Label 'Search actions' -Desc 'Type words and use arrows/Enter.' -Value 'Search')
-    )
-    $navigation = Show-Menu -Title 'Navigation style' -Items $choices -Navigation Arrows
-    if (-not $navigation) { return }
-    $choices = @(
-        (New-MenuItem -Label 'Automatic icon detection' -Desc 'Choose the safest icons for the terminal.' -Value 'Auto'),
-        (New-MenuItem -Label 'Emoji' -Desc 'Colorful icons in modern terminals.' -Value 'Emoji'),
-        (New-MenuItem -Label 'Simple symbols' -Desc 'Lightweight Unicode symbols.' -Value 'Symbol'),
-        (New-MenuItem -Label 'ASCII' -Desc 'Portable text icons.' -Value 'Ascii'),
-        (New-MenuItem -Label 'No icons' -Desc 'Clean text-only choices.' -Value 'None')
-    )
-    $icons = Show-Menu -Title 'Icon style' -Items $choices -Navigation Arrows
-    if (-not $icons) { return }
-    $choices = @(
-        (New-MenuItem -Label 'Automatic' -Desc 'Adapt to terminal support.' -Value 'Auto'),
-        (New-MenuItem -Label 'Rich accents' -Desc 'Strong accent headings and selections.' -Value 'Full'),
-        (New-MenuItem -Label 'Subtle accents' -Desc 'Restrained color hierarchy.' -Value 'Subtle'),
-        (New-MenuItem -Label 'No colors' -Desc 'Monochrome interface.' -Value 'None')
-    )
-    $colors = Show-Menu -Title 'Color style' -Items $choices -Navigation Arrows
-    if (-not $colors) { return }
-    $choices = @(
-        (New-MenuItem -Label 'Muted and indented' -Desc 'Subdued explanation under each option.' -Value 'Muted'),
-        (New-MenuItem -Label 'Subtle shading' -Desc 'Indented explanation with faint shading when supported.' -Value 'Shade'),
-        (New-MenuItem -Label 'Inline' -Desc 'Description on the same line.' -Value 'Inline'),
-        (New-MenuItem -Label 'Details panel' -Desc 'Explain the currently highlighted option.' -Value 'Panel'),
-        (New-MenuItem -Label 'Compact, no descriptions' -Desc 'Hide optional explanation rows.' -Value 'Off')
-    )
-    $descriptions = Show-Menu -Title 'Option descriptions' -Items $choices -Navigation Arrows
-    if (-not $descriptions) { return }
-    $summary = 'Preset: ' + $preset + '; Navigation: ' + $navigation + '; Icons: ' + $icons + '; Colors: ' + $colors + '; Descriptions: ' + $descriptions
-    if (-not (Show-Confirm -Title 'Save this design?' -Message $summary)) { return }
-    foreach ($key in @('preset','navigation','icons','colors','descriptions')) {
-        $value = switch ($key) {
-            'preset' { $preset } 'navigation' { $navigation } 'icons' { $icons }
-            'colors' { $colors } 'descriptions' { $descriptions }
-        }
-        if (-not (Set-UserSetting -Name ('design_' + $key) -Value $value)) {
-            Show-Notice -Title 'Settings not saved' -Lines @('The configuration could not be written.') -Kind Error
-            return
-        }
-    }
-    Apply-AppDesign -Root $Root
-    Show-Notice -Title 'Design updated' -Lines @('The new appearance is active. ' + $summary) -Kind Success
-}
-
-function Get-AppVersion {
-    param([string]$Root)
-    $f = Join-Path $Root 'VERSION'
-    if (Test-Path -LiteralPath $f) { return ((Get-Content -LiteralPath $f -TotalCount 1)).Trim() }
-    return '0.0.0'
-}
-
-function Test-PersonName {
-    # Returns $null when valid, else the message. Pure function: unit tested without any UI.
-    param([string]$Text)
-    if ([string]::IsNullOrWhiteSpace($Text)) { return 'Please type a name.' }
-    if ($Text.Length -gt 40) { return 'The name can have at most 40 characters.' }
-    return $null
-}
-
-function Invoke-DemoForm {
-    $name = Read-ValidatedInput -Prompt 'Your name' -Help 'Any name, up to 40 characters.' -Example 'Ada Lovelace' -Validate { param($t) Test-PersonName $t }
-    if ($null -eq $name) { return }
-    if (Show-Confirm -Title 'Save this name?' -Message ('The name is: ' + $name) -YesLabel 'Yes, save it' -YesDesc 'Store the name in your settings.' -NoLabel 'No, discard it' -NoDesc 'Keep the old value.') {
-        if (Set-UserSetting -Name 'name' -Value $name) { Show-Notice -Title 'Saved' -Lines @('Hello, ' + $name + '.') -Kind Success }
-        else { Show-Notice -Title 'Could not save' -Lines @('The settings file is not writable. Nothing was changed.') -Kind Error }
-    }
-}
-
-function Invoke-DemoCommand {
-    # External program from an argument array; here the host PowerShell itself, which exists on every platform.
-    $ps = Get-CurrentPowerShellPath
-    if (-not $ps) { Show-Notice -Title 'PowerShell not found' -Lines @('Cannot locate the PowerShell executable.') -Kind Error; return }
-    $r = Invoke-External -FilePath $ps -Arguments @('-NoProfile', '-Command', '$PSVersionTable.PSVersion.ToString()') -TimeoutSec 30
-    if ($r.Started -and $r.ExitCode -eq 0) { Show-Notice -Title 'Command finished' -Lines @('PowerShell version: ' + $r.StdOut.Trim()) -Kind Success }
-    else { Write-AppLog ('demo command failed: exit ' + $r.ExitCode + ' ' + $r.Error) 'ERROR'; Show-Notice -Title 'Command failed' -Lines @('Exit code ' + $r.ExitCode + '. Details were written to the log file.') -Kind Error }
-}
-
-function Invoke-IconStyleChoice {
-    $cur = Get-IconTierInUse
-    $items = @(
-        (New-MenuItem -Label 'Emoji icons' -Desc 'Colorful icons; needs a terminal that draws emoji (Windows Terminal, most Linux terminals).' -Value 'emoji' -Icon 'Run'),
-        (New-MenuItem -Label 'Simple symbols' -Desc 'Single-column symbols that every console font can draw.' -Value 'symbol' -Icon 'Settings'),
-        (New-MenuItem -Label 'Plain text' -Desc 'ASCII only: use this when icons show as empty boxes.' -Value 'ascii' -Icon 'Item')
-    )
-    $r = Show-Menu -Title ('Icon style (now: ' + $cur + ')') -Description 'The choice is remembered for next time.' -Items $items
-    if ($r) {
-        $tier = (Get-Culture).TextInfo.ToTitleCase($r)
-        Set-IconTier $tier
-        if ($r -ne 'ascii') { [void](Set-UserSetting -Name 'icons' -Value $r) }
-    }
-}
-
-function Show-AppAbout {
-    param([string]$Root)
-    $ri = Get-RuntimeInfo
-    Show-Notice -Title 'About Git Command Manager' -Lines @(('Version ' + (Get-AppVersion $Root) + '.'), ('Running on ' + $ri.Platform + ' with PowerShell ' + $ri.PowerShell + ' (' + $ri.Edition + ').'), ('Icons: ' + (Get-IconTierInUse) + '.')) -Kind Info
-}
-
-function Start-TuiApp {
-    param([Parameter(Mandatory)][string]$Root)
-    Apply-AppDesign -Root $Root
-    $quit = $false
-    while (-not $quit) {
-        $items = @(
-            (New-MenuItem -Label 'Demo form' -Desc 'Type a value with help, an example and validation.' -Value 'form' -Icon 'Form'),
-            (New-MenuItem -Label 'Run a command' -Desc 'Start an external program safely and show its result.' -Value 'cmd' -Icon 'Run'),
-            (New-MenuItem -Label 'Customize interface' -Desc 'Choose from twenty layouts, navigation, icons, colors and descriptions.' -Value 'icons' -Icon 'Settings'),
-            (New-MenuItem -Label 'About' -Desc 'Version, platform and PowerShell edition.' -Value 'about' -Icon 'About'),
-            (New-MenuItem -Label 'Exit' -Desc 'Close Git Command Manager. Nothing is left running.' -Value 'exit' -Icon 'Exit')
-        )
-        $choice = Show-Menu -Title 'Git Command Manager' -Description 'Use the chosen keyboard navigation style.' -Items $items
-        switch ($choice) {
-            'form' { Invoke-DemoForm }
-            'cmd' { Invoke-DemoCommand }
-            'icons' { Invoke-DesignWizard -Root $Root }
-            'about' { Show-AppAbout -Root $Root }
-            'exit' { $quit = $true }
-            $null { $quit = $true }   # Esc on the main menu leaves the app
-        }
-    }
-}
-
-Export-ModuleMember -Function Get-AppVersion, Test-PersonName, Get-AppDesign, Apply-AppDesign, Invoke-DesignWizard, Start-TuiApp
+function Get-AppVersion { param([string]$Root) return (Get-Content -LiteralPath (Join-Path $Root 'VERSION') -TotalCount 1).Trim() }
+function Test-PersonName { param([string]$Text) if ([string]::IsNullOrWhiteSpace($Text)) { return 'Please type a name.' }; if ($Text.Length -gt 40) { return 'The name can have at most 40 characters.' }; return $null }
+function Get-AppDesign { param([string]$Root) return @{ preset='task-dashboard'; navigation='Arrows'; icons='Auto'; colors='Full'; descriptions='Muted' } }
+function Apply-AppDesign { param([string]$Root) Set-TuiMenuStyle -Navigation Arrows -Preset 'task-dashboard' -Descriptions Muted; Set-TuiColorStyle -Mode Full -Accent (Get-TuiPreset -Id 'task-dashboard').Accent; Set-IconTier Auto }
+function Get-InterfaceMode { $v=Get-UserSetting -Name 'interface_mode'; if ($v -notin @('Dashboard','Palette','Assistant')) { return 'Dashboard' }; return $v }
+function Set-InterfaceMode { param([string]$Mode) [void](Set-UserSetting -Name 'interface_mode' -Value $Mode) }
+function Get-WorkspacePath { $v=Get-UserSetting -Name 'workspace_path'; if ($v -and (Test-Path -LiteralPath $v -PathType Container)) { return $v }; return '' }
+function Set-WorkspacePath { param([string]$Path) [void](Set-UserSetting -Name 'workspace_path' -Value ([IO.Path]::GetFullPath($Path))) }
+function Test-DirectoryInput { param([string]$Text) if ([string]::IsNullOrWhiteSpace($Text)) { return 'Enter A Folder Path.' }; if (-not (Test-Path -LiteralPath $Text -PathType Container)) { return 'The Folder Does Not Exist.' }; return $null }
+function Select-Workspace { $path=Read-ValidatedInput -Prompt 'Workspace Folder' -Help 'Choose An Existing Folder. Git Is Never Initialized Automatically.' -Example 'C:\Projects\Example' -Validate { param($v) Test-DirectoryInput $v }; if ($null -eq $path) { return }; Set-WorkspacePath $path; $state=Get-GitWorkspaceState $path; $message=if ($state.IsRepository) { 'Repository Root: ' + $state.Root } else { 'This Folder Is Not A Git Repository.' }; Show-Notice -Title 'Workspace Selected' -Lines @($message) -Kind Info }
+function Show-WorkspaceDashboard { $path=Get-WorkspacePath; if (-not $path) { Show-Notice -Title 'No Workspace Selected' -Lines @('Select A Folder First.') -Kind Info; return }; $s=Get-GitWorkspaceState $path; if (-not $s.IsRepository) { Show-Notice -Title 'Not A Repository' -Lines @('Use Initialize Repository Only When You Intend To Create Git Metadata.') -Kind Warning; return }; $branch=$s.Branch; if (-not $branch) { $branch='Detached Or Unborn' }; Show-Notice -Title 'Workspace Dashboard' -Lines @('Path: ' + $s.Root,'Branch: ' + $branch,'HEAD: ' + $s.Head,'Staged: ' + $s.Staged,'Unstaged: ' + $s.Unstaged,'Untracked: ' + $s.Untracked) -Kind Info }
+function Initialize-Repository { $path=Get-WorkspacePath; if (-not $path) { Select-Workspace; $path=Get-WorkspacePath }; if (-not $path) { return }; if ((Get-GitWorkspaceState $path).IsRepository) { Show-Notice -Title 'Repository Already Exists' -Lines @('No Initialization Was Performed.') -Kind Info; return }; if (-not (Show-Confirm -Title 'Initialize Repository?' -Message ('Git Init Will Create Metadata In: ' + $path) -YesLabel 'Initialize Repository' -NoLabel 'Cancel')) { return }; $r=Invoke-Git -Arguments @('init') -WorkingDirectory $path; if ($r.Started -and $r.ExitCode -eq 0) { Show-Notice -Title 'Repository Initialized' -Lines @('Git Created Repository Metadata.') -Kind Success } else { Show-Notice -Title 'Initialization Failed' -Lines @($r.StdErr) -Kind Error } }
+function Get-Inventory { param([string]$Root) $items=Get-GitCommandInventory; $data=Join-Path $Root 'data'; if (-not (Test-Path -LiteralPath $data)) { [void](New-Item -ItemType Directory -Path $data -Force) }; Export-GitCommandCatalog -Inventory $items -Path (Join-Path $data 'commands.json'); return $items }
+function Invoke-CommandRecord { param([object]$Record) $path=Get-WorkspacePath; $text=Read-ValidatedInput -Prompt ('Arguments For Git ' + $Record.Name) -Help 'Optional Space-Separated Arguments.' -Example '--help' -Validate { param($v) if ($v -match "[\r\n]") { 'Use One Line.' } else { $null } }; if ($null -eq $text) { return }; $args=@($Record.Name); if ($text) { $args += @($text -split '\s+') }; $risk=Get-GitRiskTier -Command $Record.Name -Arguments $args; $preview=Format-GitCommand $args; if ($risk -ne 'ReadOnly' -and -not (Show-Confirm -Title 'Confirm Git Operation' -Message ($preview + '. ' + (Get-RiskExplanation $risk)) -YesLabel 'Run This Operation' -NoLabel 'Cancel')) { return }; $r=Invoke-Git -Arguments $args -WorkingDirectory $path; $out=($r.StdOut + $r.StdErr).Trim(); if ($r.Started -and $r.ExitCode -eq 0) { Show-Notice -Title 'Git Command Completed' -Lines @($preview,$out) -Kind Success } else { Show-Notice -Title 'Git Command Failed' -Lines @($preview,$out) -Kind Error } }
+function Show-CommandExplorer { param([string]$Root,[bool]$Palette=$false) $inventory=Get-Inventory $Root; $items=@(); foreach ($r in $inventory) { $items += New-MenuItem -Label ('git ' + $r.Name) -Desc ($r.Category + '. ' + $r.Summary) -Value $r.Name -Icon 'Run' }; $nav='Arrows'; $preset='task-dashboard'; if ($Palette) { $nav='Search'; $preset='command-palette' }; $choice=Show-Menu -Title $(if ($Palette) { 'Command Palette' } else { 'Command Explorer' }) -Description 'Commands Are Discovered From The Installed Git Version.' -Items $items -Navigation $nav -Preset $preset; if ($choice) { Invoke-CommandRecord @($inventory | Where-Object { $_.Name -eq $choice })[0] } }
+function Start-AssistantConsole { param([string]$Root) $items=@((New-MenuItem -Label 'Check Repository Status' -Desc 'Explain Repository Changes Before Taking Action.' -Value 'status' -Icon 'Info'),(New-MenuItem -Label 'Initialize Repository' -Desc 'Create Git Metadata After Confirmation.' -Value 'init' -Icon 'Run'),(New-MenuItem -Label 'Browse All Commands' -Desc 'Use The Shared Command Inventory.' -Value 'browse' -Icon 'Item'),(New-MenuItem -Label 'Return To Dashboard' -Desc 'Return To The Main Interface.' -Value 'back' -Icon 'Exit')); $c=Show-Menu -Title 'Assistant Console' -Description 'Guided Questions, Explanations, And Confirmations.' -Items $items -Navigation Arrows -Preset 'assistant-console'; switch ($c) { 'status' { Invoke-CommandRecord (New-GitCommandRecord 'status') }; 'init' { Initialize-Repository }; 'browse' { Show-CommandExplorer $Root $true } } }
+function Show-InterfaceSettings { $items=@((New-MenuItem -Label 'Task Dashboard' -Desc 'Organized Categories And Repository Overview.' -Value 'Dashboard' -Icon 'Item'),(New-MenuItem -Label 'Command Palette' -Desc 'Search The Installed Git Command Inventory.' -Value 'Palette' -Icon 'Run'),(New-MenuItem -Label 'Assistant Console' -Desc 'Guided Git Workflows And Confirmations.' -Value 'Assistant' -Icon 'Form')); $c=Show-Menu -Title ('Interface Mode (Now: ' + (Get-InterfaceMode) + ')') -Description 'Applies Immediately And Persists Across Restarts.' -Items $items; if ($c) { Set-InterfaceMode $c; Show-Notice -Title 'Interface Mode Saved' -Lines @($c + ' Is Now The Preferred Interface.') -Kind Success } }
+function Show-AppAbout { param([string]$Root) Show-Notice -Title 'About Git Command Manager' -Lines @('Version: ' + (Get-AppVersion $Root),'Git: ' + $(if (Get-GitExecutable) { 'Available' } else { 'Not Found' }),'Interface Mode: ' + (Get-InterfaceMode)) -Kind Info }
+function Start-TuiApp { param([string]$Root) Apply-AppDesign $Root; if (-not (Get-GitExecutable)) { Show-Notice -Title 'Git Is Not Installed' -Lines @('Install Git Yourself, Then Restart This Application.') -Kind Warning; return }; $quit=$false; while (-not $quit) { $mode=Get-InterfaceMode; if ($mode -eq 'Palette') { Show-CommandExplorer $Root $true; Set-InterfaceMode Dashboard; continue }; if ($mode -eq 'Assistant') { Start-AssistantConsole $Root; Set-InterfaceMode Dashboard; continue }; $items=@((New-MenuItem -Label 'Workspace Dashboard' -Desc 'Review The Current Repository State.' -Value 'dashboard' -Icon 'Info'),(New-MenuItem -Label 'Select Workspace Folder' -Desc 'Choose A Folder Using Keyboard Input.' -Value 'workspace' -Icon 'Item'),(New-MenuItem -Label 'Initialize Repository' -Desc 'Create A Repository After Confirmation.' -Value 'init' -Icon 'Run'),(New-MenuItem -Label 'Command Explorer' -Desc 'Browse Every Installed Git Command.' -Value 'explorer' -Icon 'Item'),(New-MenuItem -Label 'Command Palette' -Desc 'Search The Shared Git Command Engine.' -Value 'palette' -Icon 'Run'),(New-MenuItem -Label 'Assistant Console' -Desc 'Use Guided Git Workflows.' -Value 'assistant' -Icon 'Form'),(New-MenuItem -Label 'Interface Mode' -Desc 'Set The Preferred Startup Interface.' -Value 'settings' -Icon 'Settings'),(New-MenuItem -Label 'About' -Desc 'Show Application And Git Details.' -Value 'about' -Icon 'About'),(New-MenuItem -Label 'Exit' -Desc 'Close Git Command Manager.' -Value 'exit' -Icon 'Exit')); $c=Show-Menu -Title 'Git Command Manager' -Description 'Discover Git Safely Through Dashboard, Search, Or Guided Workflows.' -Items $items -Navigation Arrows -Preset 'task-dashboard'; switch ($c) { 'dashboard' { Show-WorkspaceDashboard }; 'workspace' { Select-Workspace }; 'init' { Initialize-Repository }; 'explorer' { Show-CommandExplorer $Root $false }; 'palette' { Show-CommandExplorer $Root $true }; 'assistant' { Start-AssistantConsole $Root }; 'settings' { Show-InterfaceSettings }; 'about' { Show-AppAbout $Root }; default { $quit=$true } } } }
+Export-ModuleMember -Function Get-AppVersion, Test-PersonName, Get-AppDesign, Apply-AppDesign, Get-InterfaceMode, Set-InterfaceMode, Start-TuiApp
