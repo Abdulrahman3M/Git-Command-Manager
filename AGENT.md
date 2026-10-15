@@ -15,8 +15,8 @@
 - Every code change that modifies application behavior, including a feature, update, or bug fix, must update the root `VERSION` file before the change is considered complete.
 - Follow Semantic Versioning `MAJOR.MINOR.PATCH`: increment PATCH for backward-compatible fixes, MINOR for backward-compatible functionality, and MAJOR for incompatible public behavior or interfaces. For a `0.y.z` version, treat changes as pre-release development and still choose the increment matching the change's compatibility and scope.
 - Keep release notes and any other version references synchronized with `VERSION`. The runtime application version must continue to be read from this file rather than maintained as a duplicate constant.
-- In the same version change, update README.md so its main heading is exactly # Git Command Manager and its version line is exactly Git Command Manager - vMAJOR.MINOR.PATCH for the value in VERSION; update the matching top release entry in CHANGELOG.md too.
-- Add a static regression assertion that the README project/version lines and the top changelog version match VERSION; run that assertion before considering a version update complete.
+- In the same version change, update README.md so it has one centered main heading with the project name and version shown together as <h1 align="center">Git Command Manager <sup>vMAJOR.MINOR.PATCH</sup></h1>; remove any standalone duplicate project/version line; update the matching top release entry in CHANGELOG.md too.
+- Add static regression assertions that the centered README heading contains the exact project name and version from VERSION, that no duplicate standalone project/version line exists, and that the top changelog version matches VERSION; run those assertions before considering a version update complete.
 - Verify that `VERSION` contains exactly three non-negative numeric components (`MAJOR.MINOR.PATCH`) and that the application's version display reports the same value. Use a SemVer validation check before reporting the version update complete.
 
 ## Problem And Solution Records

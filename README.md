@@ -1,8 +1,6 @@
 ![Git Command Manager Official Header](assets/Git-Command-Manager-Header.png)
 
-# Git Command Manager
-
-Git Command Manager - v0.2.0
+<h1 align="center">Git Command Manager <sup>v0.2.1</sup></h1>
 
 [![PowerShell 5.1+](https://img.shields.io/badge/PowerShell-5.1%2B-5391FE?logo=powershell&logoColor=white)](https://learn.microsoft.com/powershell/)
 [![Private Repository](https://img.shields.io/badge/Repository-Private-6C5CE7)](https://github.com/Abdulrahman3M/Git-Command-Manager)

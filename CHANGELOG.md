@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1] - 2026-10-15
+
+### Changed
+
+- Centered the README project title and placed the version beside it, removing the duplicate title line.
+
+
 ## [0.2.0] - 2026-10-15
 
 ### Added
