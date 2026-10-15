@@ -1,0 +1,30 @@
+﻿# Decision Log
+
+- **Decision ID:** D-001
+  - Decision: Product name is exactly `Git Command Manager`; repository name is `Git-Command-Manager`.
+  - Authority: Owner instruction.
+  - Reason: Explicit naming requirement.
+  - Affected phases/files: All phases; root files and metadata.
+  - Owner approval required: No.
+  - Supersedes: None.
+- **Decision ID:** D-002
+  - Decision: UI language is English Title Case only.
+  - Authority: Owner instruction.
+  - Reason: Explicit language and casing requirement.
+  - Affected phases/files: P03-P04; user-visible UI.
+  - Owner approval required: No.
+  - Supersedes: None.
+- **Decision ID:** D-003
+  - Decision: Task Dashboard is first-run default; all three interfaces share one engine and preference persists.
+  - Authority: Owner instruction.
+  - Reason: Explicit interface decision.
+  - Affected phases/files: P02-P04; shared application core/settings.
+  - Owner approval required: No.
+  - Supersedes: None.
+- **Decision ID:** D-004
+  - Decision: GitHub repository `Git-Command-Manager` must be Private.
+  - Authority: Owner instruction.
+  - Reason: Owner selected private visibility.
+  - Affected phases/files: P05.
+  - Owner approval required: No; current blocker is tool capability, not approval.
+  - Supersedes: None.

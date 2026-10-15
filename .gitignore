@@ -1,3 +1,7 @@
 dist/
 *.zip
 *.log
+Shared-Project-State/Quarantine/Items/
+Shared-Project-State/Test-Workspace/
+Shared-Project-State/Temporary-Files/
+Shared-Project-State/Cache/

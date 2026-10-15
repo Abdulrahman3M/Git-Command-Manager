@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "operation": "quarantine",
+  "created_at": "2026-10-15T07:11:35.657153+00:00",
+  "original_path": "Shared-Project-State\\Temporary-Files\\Skill-Reference",
+  "quarantined_path": "Shared-Project-State\\Quarantine\\Items\\20261015-111135-55204e78-Skill-Reference",
+  "restored": false,
+  "purged": true,
+  "purged_at": "2026-10-15T07:22:25.004292+00:00"
+}

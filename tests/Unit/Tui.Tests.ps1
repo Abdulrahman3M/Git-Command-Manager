@@ -5,6 +5,14 @@ Assert-Equal 'Moving selection updates two rows' '0,1' (@(Get-UiChangedRows -Bef
 Assert-Equal 'Shorter frame erases stale trailing row' '1' (@(Get-UiChangedRows -Before @('A','B') -After @('A')) -join ',')
 Assert-Equal 'Larger frame draws newly added row' '1' (@(Get-UiChangedRows -Before @('A') -After @('A','B')) -join ',')
 
+Set-TestGroup 'Responsive menu viewport'
+$viewport = Get-MenuViewport -Count 180 -Selected 90 -Capacity 10
+Assert-Equal 'large menus keep the selected command centered' '85,94' ($viewport.Start.ToString() + ',' + $viewport.End.ToString())
+$viewport = Get-MenuViewport -Count 180 -Selected 0 -Capacity 10
+Assert-Equal 'large menus begin at the first command' '0,9' ($viewport.Start.ToString() + ',' + $viewport.End.ToString())
+$viewport = Get-MenuViewport -Count 180 -Selected 179 -Capacity 10
+Assert-Equal 'large menus retain the final command' '170,179' ($viewport.Start.ToString() + ',' + $viewport.End.ToString())
+
 Set-TestGroup 'Icon tiers'
 $wt = @{ WT_SESSION = 'x' }
 Assert-Equal 'Windows Terminal -> Emoji' 'Emoji' (Resolve-IconTier -Env $wt -IsWin $true -Redirected $false)
@@ -18,6 +26,8 @@ foreach ($tier in 'Emoji', 'Symbol', 'Ascii') {
     Assert-Equal "every icon has a $tier form" 0 $missing.Count
 }
 Assert-True 'ASCII icons are really ASCII' (@((Get-IconTable).Values | Where-Object { $_.Ascii -notmatch '^[\x20-\x7E]$' }).Count -eq 0)
+Assert-Equal 'branch icon uses its semantic accent role' 'Magenta' (Get-IconColor -Name Branch)
+Assert-Equal 'remote icon uses its semantic accent role' 'Blue' (Get-IconColor -Name Remote)
 
 Set-TestGroup 'Numbered menu'
 Assert-Equal 'number 1 is 01' '01' (Format-MenuNumber 1)
@@ -76,3 +86,43 @@ Set-InterfaceMode 'Palette'
 Assert-Equal 'Interface mode persists through settings' 'Palette' (Get-InterfaceMode)
 Set-InterfaceMode 'Dashboard'
 Assert-True 'Git command discovery returns installed commands' ((Get-GitCommandInventory).Count -gt 0)
+
+Set-TestGroup 'Integrated Project Management Interfaces'
+Set-InterfaceMode 'Dashboard'
+$ui = Invoke-Ui { Start-TuiApp -Root (Get-TestWork) } '{Down}{Down}{Enter}{Esc}{Esc}'
+Assert-Equal 'Project Management returns safely to the Task Dashboard' '' $ui.Error
+Assert-Contains 'Task Dashboard opens the Project Management hub' $ui.Output 'Project Management'
+Assert-Contains 'Project Management groups GitHub page controls' $ui.Output 'GitHub Page Management'
+
+Set-InterfaceMode 'Palette'
+$ui = Invoke-Ui { Start-TuiApp -Root (Get-TestWork) } 'Project Management{Enter}{Esc}{Esc}'
+Assert-Equal 'Command Palette opens Project Management without a separate app' '' $ui.Error
+Assert-Contains 'Command Palette exposes the shared Project Management hub' $ui.Output 'Project Management'
+
+Set-InterfaceMode 'Assistant'
+$ui = Invoke-Ui { Start-TuiApp -Root (Get-TestWork) } '{Down}{Enter}{Esc}{Esc}{Esc}'
+Assert-Equal 'Assistant Console opens Project Management and returns to its own mode' '' $ui.Error
+Assert-Contains 'Assistant Console includes Project Management' $ui.Output 'Project Management'
+Assert-Contains 'Assistant flow remains available after Project Management' $ui.Output 'Assistant Console'
+
+Set-InterfaceMode 'Assistant'
+$settingsKeys = ('{Down}' * 12) + '{Enter}{Down}{Enter}{Enter}{Esc}{Esc}'
+$ui = Invoke-Ui { Start-TuiApp -Root (Get-TestWork) } $settingsKeys
+Assert-Equal 'interface mode switches live from Assistant Console' '' $ui.Error
+Assert-Equal 'live mode choice persists across application exit' 'Palette' (Get-InterfaceMode)
+Assert-Contains 'live mode switch opens Command Palette immediately' $ui.Output 'Command Palette'
+Set-InterfaceMode 'Dashboard'
+
+Assert-Equal 'new project icons have semantic color roles' 'Blue,Green,Cyan,Yellow,DarkCyan,Magenta,Blue,Yellow' ((@('Project','Connect','Sync','Unstage','History','GitHub','Page','Lock') | ForEach-Object { Get-IconColor $_ }) -join ',')
+
+Set-TestGroup 'New Project Setup Workflow'
+Set-InterfaceMode 'Dashboard'
+$newProjectPath = Join-Path (Get-TestWork) 'project created through the app'
+$setupKeys = '{Down}{Down}{Enter}{Enter}{Enter}{Enter}' + $newProjectPath + '{Enter}{Up}{Enter}{Enter}{Esc}{Esc}'
+$ui = Invoke-Ui { Start-TuiApp -Root (Get-TestWork) } $setupKeys
+Assert-Equal 'create local project folder flow completes without scripted errors' '' $ui.Error
+Assert-Contains 'empty project folder input shows validation and allows retry' $ui.Output 'Enter A New Folder Path With An Existing Parent.'
+Assert-True 'new project folder is created after explicit confirmation' (Test-Path -LiteralPath $newProjectPath -PathType Container)
+Assert-True 'new project setup does not initialize Git automatically' (-not (Test-Path -LiteralPath (Join-Path $newProjectPath '.git')))
+Assert-Equal 'new project folder becomes the active workspace' ([IO.Path]::GetFullPath($newProjectPath)) ((Get-UserSetting -Name 'workspace_path'))
+Set-InterfaceMode 'Dashboard'

@@ -5,26 +5,54 @@ Set-StrictMode -Version 2.0
 $script:ColorMode = 'Full'
 $script:Accent = 'Cyan'
 $script:Tier = ''   # the tier in use; empty = detect on first use (tests and the settings screen can override it)
+$script:DetectedTier = ''
 
 function ConvertFrom-CodePoint { param([int]$Code) return [char]::ConvertFromUtf32($Code) }
 
-function Get-IconTable {
-    # Name -> Emoji / Symbol / Ascii. Source stays ASCII-only: glyphs are built from code points.
-    return @{
-        Run      = @{ Emoji = (ConvertFrom-CodePoint 0x1F680); Symbol = (ConvertFrom-CodePoint 0x25BA); Ascii = '>' }
-        Form     = @{ Emoji = (ConvertFrom-CodePoint 0x1F4DD); Symbol = (ConvertFrom-CodePoint 0x2666); Ascii = '*' }
-        Settings = @{ Emoji = (ConvertFrom-CodePoint 0x1F527); Symbol = (ConvertFrom-CodePoint 0x263C); Ascii = '#' }
-        About    = @{ Emoji = (ConvertFrom-CodePoint 0x1F4A1); Symbol = (ConvertFrom-CodePoint 0x263A); Ascii = 'i' }
-        Exit     = @{ Emoji = (ConvertFrom-CodePoint 0x1F6AA); Symbol = (ConvertFrom-CodePoint 0x25C4); Ascii = '<' }
-        Success  = @{ Emoji = (ConvertFrom-CodePoint 0x2705); Symbol = (ConvertFrom-CodePoint 0x221A); Ascii = '+' }
-        Warning  = @{ Emoji = (ConvertFrom-CodePoint 0x1F536); Symbol = (ConvertFrom-CodePoint 0x25B2); Ascii = '!' }
-        Error    = @{ Emoji = (ConvertFrom-CodePoint 0x274C); Symbol = (ConvertFrom-CodePoint 0x00D7); Ascii = 'x' }
-        Info     = @{ Emoji = (ConvertFrom-CodePoint 0x1F4A1); Symbol = (ConvertFrom-CodePoint 0x263A); Ascii = 'i' }
-        Yes      = @{ Emoji = (ConvertFrom-CodePoint 0x2705); Symbol = (ConvertFrom-CodePoint 0x221A); Ascii = '+' }
-        No       = @{ Emoji = (ConvertFrom-CodePoint 0x274C); Symbol = (ConvertFrom-CodePoint 0x00D7); Ascii = 'x' }
-        Item     = @{ Emoji = (ConvertFrom-CodePoint 0x1F539); Symbol = (ConvertFrom-CodePoint 0x2666); Ascii = '-' }
-    }
+$script:IconTable = @{
+    App       = @{ Emoji = (ConvertFrom-CodePoint 0x1F5C3); Symbol = (ConvertFrom-CodePoint 0x25A0); Ascii = 'G' }
+    Dashboard = @{ Emoji = (ConvertFrom-CodePoint 0x1F4CA); Symbol = (ConvertFrom-CodePoint 0x25A0); Ascii = 'H' }
+    Project   = @{ Emoji = (ConvertFrom-CodePoint 0x1F5C2); Symbol = (ConvertFrom-CodePoint 0x25A3); Ascii = 'P' }
+    Connect   = @{ Emoji = (ConvertFrom-CodePoint 0x1F517); Symbol = (ConvertFrom-CodePoint 0x21D4); Ascii = 'C' }
+    Sync      = @{ Emoji = (ConvertFrom-CodePoint 0x1F504); Symbol = (ConvertFrom-CodePoint 0x21BB); Ascii = 'S' }
+    Unstage   = @{ Emoji = (ConvertFrom-CodePoint 0x1F4E4); Symbol = (ConvertFrom-CodePoint 0x25B2); Ascii = '-' }
+    History   = @{ Emoji = (ConvertFrom-CodePoint 0x1F4DC); Symbol = (ConvertFrom-CodePoint 0x2261); Ascii = 'H' }
+    GitHub    = @{ Emoji = (ConvertFrom-CodePoint 0x1F310); Symbol = (ConvertFrom-CodePoint 0x25C8); Ascii = 'G' }
+    Page      = @{ Emoji = (ConvertFrom-CodePoint 0x1F4C4); Symbol = (ConvertFrom-CodePoint 0x25A0); Ascii = 'P' }
+    Lock      = @{ Emoji = (ConvertFrom-CodePoint 0x1F512); Symbol = (ConvertFrom-CodePoint 0x25A3); Ascii = 'L' }
+    Search    = @{ Emoji = (ConvertFrom-CodePoint 0x1F50E); Symbol = (ConvertFrom-CodePoint 0x25CF); Ascii = '?' }
+    Command   = @{ Emoji = (ConvertFrom-CodePoint 0x2328); Symbol = (ConvertFrom-CodePoint 0x25BA); Ascii = '>' }
+    Run       = @{ Emoji = (ConvertFrom-CodePoint 0x1F680); Symbol = (ConvertFrom-CodePoint 0x25BA); Ascii = '>' }
+    Form      = @{ Emoji = (ConvertFrom-CodePoint 0x1F4DD); Symbol = (ConvertFrom-CodePoint 0x2666); Ascii = '*' }
+    Folder    = @{ Emoji = (ConvertFrom-CodePoint 0x1F4C1); Symbol = (ConvertFrom-CodePoint 0x25A0); Ascii = 'D' }
+    Status    = @{ Emoji = (ConvertFrom-CodePoint 0x1F50D); Symbol = (ConvertFrom-CodePoint 0x263A); Ascii = 'S' }
+    Initialize= @{ Emoji = (ConvertFrom-CodePoint 0x1F195); Symbol = (ConvertFrom-CodePoint 0x25BA); Ascii = 'N' }
+    Stage     = @{ Emoji = (ConvertFrom-CodePoint 0x1F4E5); Symbol = (ConvertFrom-CodePoint 0x25BC); Ascii = '+' }
+    Commit    = @{ Emoji = (ConvertFrom-CodePoint 0x1F4BE); Symbol = (ConvertFrom-CodePoint 0x25A0); Ascii = 'C' }
+    Branch    = @{ Emoji = (ConvertFrom-CodePoint 0x1F33F); Symbol = (ConvertFrom-CodePoint 0x2666); Ascii = 'B' }
+    Remote    = @{ Emoji = (ConvertFrom-CodePoint 0x1F310); Symbol = (ConvertFrom-CodePoint 0x2248); Ascii = 'R' }
+    Fetch     = @{ Emoji = (ConvertFrom-CodePoint 0x1F4E5); Symbol = (ConvertFrom-CodePoint 0x2193); Ascii = 'F' }
+    Pull      = @{ Emoji = (ConvertFrom-CodePoint 0x2B07); Symbol = (ConvertFrom-CodePoint 0x2193); Ascii = 'v' }
+    Push      = @{ Emoji = (ConvertFrom-CodePoint 0x2B06); Symbol = (ConvertFrom-CodePoint 0x2191); Ascii = '^' }
+    Undo      = @{ Emoji = (ConvertFrom-CodePoint 0x21A9); Symbol = (ConvertFrom-CodePoint 0x2190); Ascii = '<' }
+    Restore   = @{ Emoji = (ConvertFrom-CodePoint 0x1F6DF); Symbol = (ConvertFrom-CodePoint 0x2190); Ascii = '<' }
+    Revert    = @{ Emoji = (ConvertFrom-CodePoint 0x1F501); Symbol = (ConvertFrom-CodePoint 0x2194); Ascii = 'R' }
+    Reflog    = @{ Emoji = (ConvertFrom-CodePoint 0x1F4DC); Symbol = (ConvertFrom-CodePoint 0x2261); Ascii = 'L' }
+    Settings  = @{ Emoji = (ConvertFrom-CodePoint 0x1F527); Symbol = (ConvertFrom-CodePoint 0x263C); Ascii = '#' }
+    About     = @{ Emoji = (ConvertFrom-CodePoint 0x1F4A1); Symbol = (ConvertFrom-CodePoint 0x263A); Ascii = 'i' }
+    Exit      = @{ Emoji = (ConvertFrom-CodePoint 0x1F6AA); Symbol = (ConvertFrom-CodePoint 0x25C4); Ascii = '<' }
+    Success   = @{ Emoji = (ConvertFrom-CodePoint 0x2705); Symbol = (ConvertFrom-CodePoint 0x221A); Ascii = '+' }
+    Warning   = @{ Emoji = (ConvertFrom-CodePoint 0x1F536); Symbol = (ConvertFrom-CodePoint 0x25B2); Ascii = '!' }
+    Error     = @{ Emoji = (ConvertFrom-CodePoint 0x274C); Symbol = (ConvertFrom-CodePoint 0x00D7); Ascii = 'x' }
+    Info      = @{ Emoji = (ConvertFrom-CodePoint 0x1F6C8); Symbol = (ConvertFrom-CodePoint 0x263A); Ascii = 'i' }
+    Yes       = @{ Emoji = (ConvertFrom-CodePoint 0x2705); Symbol = (ConvertFrom-CodePoint 0x221A); Ascii = '+' }
+    No        = @{ Emoji = (ConvertFrom-CodePoint 0x274C); Symbol = (ConvertFrom-CodePoint 0x00D7); Ascii = 'x' }
+    Item      = @{ Emoji = (ConvertFrom-CodePoint 0x1F539); Symbol = (ConvertFrom-CodePoint 0x2666); Ascii = '-' }
 }
+$script:IconColors = @{ App='Cyan'; Dashboard='Cyan'; Project='Blue'; Connect='Green'; Sync='Cyan'; Unstage='Yellow'; History='DarkCyan'; GitHub='Magenta'; Page='Blue'; Lock='Yellow'; Search='Cyan'; Command='Cyan'; Run='Green'; Form='Magenta'; Folder='Yellow'; Status='Cyan'; Initialize='Green'; Stage='Yellow'; Commit='Green'; Branch='Magenta'; Remote='Blue'; Fetch='Blue'; Pull='Blue'; Push='Green'; Undo='Yellow'; Restore='Yellow'; Revert='Red'; Reflog='DarkCyan'; Settings='Magenta'; About='Cyan'; Exit='DarkGray'; Success='Green'; Warning='Yellow'; Error='Red'; Info='Cyan'; Yes='Green'; No='Red'; Item='Cyan' }
+
+function Get-IconTable { return $script:IconTable }
+function Get-IconColor { param([Parameter(Mandatory)][string]$Name) if ($script:IconColors.ContainsKey($Name)) { return $script:IconColors[$Name] }; return 'Cyan' }
 
 function Resolve-IconTier {
     # Pure decision logic (unit tested). $Env is a hashtable of the relevant variables.
@@ -72,15 +100,15 @@ function Get-IconTier {
 
 function Get-Icon {
     param([Parameter(Mandatory)][string]$Name, [string]$Tier = '')
-    if (-not $Tier) { $Tier = $script:Tier; if (-not $Tier) { $Tier = Get-IconTier } }
+    if (-not $Tier) { $Tier = $script:Tier; if (-not $Tier) { if (-not $script:DetectedTier) { $script:DetectedTier = Get-IconTier }; $Tier = $script:DetectedTier } }
     if ($Tier -eq 'None') { return '' }
     $t = Get-IconTable
     if (-not $t.ContainsKey($Name)) { $Name = 'Item' }
     return $t[$Name][$Tier]
 }
 
-function Set-IconTier { param([ValidateSet('Auto', 'Emoji', 'Symbol', 'Ascii', 'None')][string]$Tier) $script:Tier = $(if ($Tier -eq 'Auto') { '' } else { $Tier }) }
-function Get-IconTierInUse { if ($script:Tier) { return $script:Tier } return (Get-IconTier) }
+function Set-IconTier { param([ValidateSet('Auto', 'Emoji', 'Symbol', 'Ascii', 'None')][string]$Tier) $script:Tier = $(if ($Tier -eq 'Auto') { '' } else { $Tier }); $script:DetectedTier = '' }
+function Get-IconTierInUse { if ($script:Tier) { return $script:Tier }; if (-not $script:DetectedTier) { $script:DetectedTier = Get-IconTier }; return $script:DetectedTier }
 
 function Set-TuiColorStyle {
     param([ValidateSet('Full','Subtle','None','Auto')][string]$Mode = 'Full',
@@ -117,4 +145,4 @@ function Get-RoleStyle {
     return $s['Normal']
 }
 
-Export-ModuleMember -Function Get-IconTable, Resolve-IconTier, Set-ConsoleUtf8Output, Get-IconTier, Get-Icon, Set-IconTier, Get-IconTierInUse, Set-TuiColorStyle, Get-RoleStyle
+Export-ModuleMember -Function Get-IconTable, Get-IconColor, Resolve-IconTier, Set-ConsoleUtf8Output, Get-IconTier, Get-Icon, Set-IconTier, Get-IconTierInUse, Set-TuiColorStyle, Get-RoleStyle

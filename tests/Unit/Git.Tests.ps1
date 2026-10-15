@@ -52,3 +52,16 @@ Assert-Equal 'staged-only path is visible to commit preflight' 1 @(Get-GitStaged
 [IO.File]::WriteAllText($spaces,'mixed working tree change')
 $mixedState=Get-GitWorkspaceState $work
 Assert-True 'mixed staged and unstaged changes are distinguished' ($mixedState.Staged -gt 0 -and $mixedState.Unstaged -gt 0)
+
+$renameWork=Join-Path (Get-TestWork) 'rename count repository'
+[void](New-Item -ItemType Directory -Path $renameWork -Force)
+$null=Invoke-Git -Arguments @('init','-q') -WorkingDirectory $renameWork
+$null=Invoke-Git -Arguments @('config','user.name','Git Test') -WorkingDirectory $renameWork
+$null=Invoke-Git -Arguments @('config','user.email','git-test@example.invalid') -WorkingDirectory $renameWork
+[IO.File]::WriteAllText((Join-Path $renameWork 'before.txt'),'rename fixture')
+$null=Invoke-Git -Arguments @('add','--','before.txt') -WorkingDirectory $renameWork
+$null=Invoke-Git -Arguments @('commit','-m','test: create rename fixture') -WorkingDirectory $renameWork
+$null=Invoke-Git -Arguments @('mv','--','before.txt','after.txt') -WorkingDirectory $renameWork
+$renameState=Get-GitWorkspaceState $renameWork
+Assert-Equal 'staged rename is counted once' 1 $renameState.Staged
+Assert-Equal 'staged rename does not create a phantom unstaged path' 0 $renameState.Unstaged

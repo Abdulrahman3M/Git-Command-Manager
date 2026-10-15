@@ -1,11 +1,16 @@
-# Security
+# Security Model
 
-- Git runs through a trusted executable path and argument arrays; the child process receives the selected working directory directly.
-- Unknown commands are assigned `RequiresReview` risk. State-changing commands require confirmation; destructive flags are reviewed centrally.
-- No command is run by moving the selection.
-- Commit messages and paths are individual process arguments in guided flows.
-- Remote URLs are not included in confirmation or success output.
-- Logs record failure summaries without command output or credentials.
-- The app does not install software, elevate privileges, collect telemetry, or read credentials directly.
+- Git And GitHub CLI Use The Shared Process Boundary, Argument Arrays, An Explicit Working Directory, And Operation Timeouts.
+- The App Never Uses Invoke-Expression Or Sends User Text To A Shell.
+- Unknown Commands Require Review. State-Changing Operations Require Confirmation; Destructive Flags Are Classified Centrally.
+- Creating A Repository, Staging, Committing, Changing Remotes, Branch Changes, Pulling, And Pushing Are Separate, Visible Actions.
+- Pull Is Fast-Forward-Only. Project Management Does Not Offer Force Push Or Hard Reset. Branch Deletion Is Limited To Merged Local Branches.
+- Public Repository Visibility Changes Require An Explicit Typed Confirmation.
+- GitHub Repository URLs Are Restricted To GitHub HTTPS/SSH Forms And Checked Before Connection. Embedded Credentials Are Rejected.
+- Remote URLs And Query Parameters Are Redacted In User-Facing Inventory And Confirmation Messages.
+- GitHub Page Management Uses The User's Existing GitHub CLI Authentication. The App Does Not Read, Display, Or Persist The Credential.
+- GitHub Repository Creation Defaults To Private And Does Not Push Automatically.
+- Logs Record Failure Summaries Without Capturing Raw Process Output Or Credentials.
+- The App Does Not Install Software, Elevate Privileges, Or Collect Telemetry.
 
-Generic command input currently splits on whitespace. Use dedicated guided workflows when a path or argument contains spaces.
+Generic Command Arguments Are Whitespace-Delimited. Use Guided Workflows For Paths Containing Spaces Or Complex Argument Quoting.

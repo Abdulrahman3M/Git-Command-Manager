@@ -1,35 +1,100 @@
+![Git Command Manager Official Header](assets/Git-Command-Manager-Header.png)
+
 # Git Command Manager
 
-Git Command Manager is a keyboard-first PowerShell terminal application for discovering and running installed Git commands with previews, risk explanations, and explicit confirmations.
+Git Command Manager - v0.2.0
 
-## Interfaces
+[![PowerShell 5.1+](https://img.shields.io/badge/PowerShell-5.1%2B-5391FE?logo=powershell&logoColor=white)](https://learn.microsoft.com/powershell/)
+[![Private Repository](https://img.shields.io/badge/Repository-Private-6C5CE7)](https://github.com/Abdulrahman3M/Git-Command-Manager)
+[![SemVer](https://img.shields.io/badge/Version-SemVer-2EA44F)](https://semver.org/)
 
-- **Task Dashboard** is the default interface and provides workspace state and organized actions.
-- **Command Palette** searches every command discovered from the installed Git executable.
-- **Assistant Console** guides users through status, initialization, and command discovery.
+A Safe, Keyboard-First PowerShell Terminal App For Exploring Git, Managing Local Repositories, And Working With GitHub.
 
-All interfaces use one Git process boundary, command inventory, safety policy, workspace parser, and persistent settings store. Select **Interface Mode** from the dashboard to change the active or preferred interface. Your selection is saved per user.
+[Quick Start](#quick-start) | [Three Interface Modes](#three-interface-modes) | [Project Management](#project-management) | [Safety](#safety-and-privacy) | [Documentation](#documentation)
 
-The dashboard and assistant provide guided workflows for status, initialization, staging one selected file, commits, branch creation, remotes, fetch, fast-forward-only pull, push, and recovery. Every discovered Git command remains available in the explorer. Generic arguments are split on spaces; use the guided workflows for file paths with spaces or complex quoting.
+---
 
-## Requirements
+## Git Workflows, Your Way
 
-- Git on PATH
-- PowerShell 7 on Windows, Linux, or macOS; Windows PowerShell 5.1 is supported on Windows
-- Windows Terminal is recommended on Windows
+Git Command Manager Brings Git's Command Catalog, Common Repository Workflows, And GitHub Project Controls Into A Responsive Terminal Interface. A Single Shared Engine Powers Every Interaction Style, So Validation, Settings, Command Execution, And Safety Rules Stay Consistent.
 
-## Run
+### Three Interface Modes
 
-```powershell
+- **Task Dashboard** - The Default. Browse Organized Actions And Repository Tasks.
+- **Command Palette** - Search Available Git Commands And Reach Advanced Operations Quickly.
+- **Assistant Console** - Follow Guided Steps With Context, Validation, Previews, And Confirmations.
+
+Change Modes From Settings Without Restarting. Your Preferred Mode Is Saved And Restored On The Next Launch.
+
+### Project Management
+
+- Create A New Empty Local Project Folder Or Clone An Existing GitHub Repository.
+- Inspect Repository State, Remotes, Branches, Upstream, Ahead/Behind Counts, And Recent Commits.
+- Connect, Verify, Change, And Remove Git Remotes While Preserving Local History.
+- Review, Stage, Unstage, And Commit Changes As Separate, Visible Steps.
+- Fetch, Fast-Forward-Only Pull, And Push With Explicit Confirmation.
+- Create, Switch, Rename, Delete Safely, And Configure Tracking For Branches.
+- Check GitHub CLI Availability And Authentication.
+- Create A Private GitHub Repository And Edit Its Description, Homepage, Topics, Or Visibility When GitHub CLI Is Available.
+
+## Quick Start
+
+### Requirements
+
+- Git Available On PATH.
+- PowerShell 7 On Windows, Linux, Or macOS. Windows PowerShell 5.1 Is Also Supported On Windows.
+- GitHub CLI (gh) Is Optional. It Is Needed Only For GitHub Page Creation And Metadata Editing.
+
+### Launch
+
+~~~powershell
 pwsh -NoProfile -File .\Start-Git-Command-Manager.ps1
-```
+~~~
 
-Use `-Version` to print the application version. A redirected session requires `-ScriptedInput` and exits with code 2 otherwise.
+On Windows PowerShell 5.1:
 
-## Safety
+~~~powershell
+powershell.exe -NoProfile -File .\Start-Git-Command-Manager.ps1
+~~~
 
-Git is started only with argument arrays and a process working directory. Read-only commands run directly; state-changing, destructive, and unclassified actions require review. Remote URLs are hidden from confirmation and success messages. The application never installs or updates Git, creates a repository without consent, or sends credentials.
+Print The Installed App Version:
 
-## Verification Status
+~~~powershell
+pwsh -NoProfile -File .\Start-Git-Command-Manager.ps1 -Version
+~~~
 
-PowerShell 7 and Windows PowerShell 5.1 command discovery were run locally. Real interactive flicker observation, Linux execution, and GitHub CI are not yet verified.
+For GitHub Page Controls, Sign In With gh auth login Before Launching The App. The App Does Not Read Or Store Your GitHub Credentials.
+
+## Safety And Privacy
+
+- Git Processes Receive Validated Argument Arrays; User Input Is Never Executed As A Shell Script.
+- Repository Creation, Staging, Commits, Remote Changes, Branch Changes, Pulls, And Pushes Require Clear Review Or Confirmation.
+- Pull Uses Fast-Forward-Only Behavior. Force Push And Hard Reset Are Not Offered In Project Management.
+- Public Visibility Changes Require A Dedicated Typed Confirmation.
+- Remote Credentials And URL Query Strings Are Redacted In Interface Output.
+- GitHub Page Features Use GitHub CLI's Existing Authentication. Credentials Are Not Displayed Or Persisted By This App.
+- The App Does Not Install Git Or GitHub CLI, Elevate Privileges, Or Collect Telemetry.
+
+## Documentation
+
+- [Project Management Guide](docs/Project-Management-Guide.md)
+- [Workflows](docs/Workflows.md)
+- [Architecture](docs/Architecture.md)
+- [Security Model](docs/Security.md)
+- [Testing](docs/Testing.md)
+- [Command Coverage](docs/Command-Coverage.md)
+- [Problems And Solutions](docs/PROBLEMS_AND_SOLUTIONS.md)
+
+## Development
+
+Run The Unit And Integration Suite:
+
+~~~powershell
+pwsh -NoProfile -File .\tests\Run-Tests.ps1
+~~~
+
+The Test Suite Uses Temporary Repositories And Is Designed For PowerShell 7 And Windows PowerShell 5.1. See AGENT.md For Repository Engineering Rules.
+
+---
+
+**Git Command Manager** - Clear Git Workflows, Shared Safety, And A Terminal UI That Fits Your Style.

@@ -2,36 +2,44 @@
 
 ## Select A Workspace
 
-Enter an existing folder path. The app reports whether it is a Git worktree. It never runs `git init` automatically.
+Enter An Existing Folder Path. The App Reports Whether It Is A Git Worktree. It Never Runs git init Automatically.
+
+## Project Management
+
+Open The Project Management Hub From Any Interface. It Provides Local Project Setup, Repository Connection, Local Changes, Remote Synchronization, Branch Management, Repository Status, History, GitHub Account, And GitHub Page Controls.
+
+See The [Project Management Guide](Project-Management-Guide.md) For Step-By-Step Setup, Clone, Connect, Commit, Synchronization, And GitHub Page Instructions.
 
 ## Initialize
 
-The app checks whether the folder is already a repository, previews the metadata location, asks for confirmation, runs `git init`, and verifies the resulting worktree.
+The App Checks Whether The Folder Is Already A Repository, Previews The Metadata Location, Asks For Confirmation, Runs git init, And Verifies The Resulting Worktree.
 
 ## Status
 
-The dashboard reads `git status --porcelain=v1 -z --branch` and reports staged, unstaged, and untracked counts, branch, HEAD, remotes, and detected merge/rebase/cherry-pick markers.
+The Dashboard Reads git status --porcelain=v1 -z --branch And Reports Staged, Unstaged, And Untracked Counts, Branch, HEAD, Remotes, And Detected Merge/Rebase/Cherry-Pick Markers.
 
 ## Stage A File
 
-Choose one displayed file, preview `git add -- <path>`, and confirm. The app does not stage everything silently.
+Choose One Displayed File, Preview git add -- path, And Confirm. The App Does Not Stage Everything Silently.
 
 ## Commit
 
-The app requires staged content and a valid Git author identity. When nothing is staged, it offers the individual-file staging flow. It asks for a nonempty commit message, shows staged diff statistics and the command, confirms, then verifies that HEAD changed. A commit remains local; pushing is a separate action.
+The App Requires Staged Content And A Valid Git Author Identity. When Nothing Is Staged, It Offers The Individual-File Staging Flow. It Asks For A Nonempty Commit Message, Shows Staged Diff Statistics And The Command, Confirms, Then Verifies That HEAD Changed. A Commit Remains Local; Pushing Is A Separate Action.
 
 ## Branch
 
-Enter a branch name, validate it with `git check-ref-format --branch`, preview `git switch -c`, and confirm.
+Enter A Branch Name, Validate It With git check-ref-format --branch, Preview git switch -c, And Confirm.
 
 ## Remote And Synchronization
 
-Adding a remote hides the URL in confirmation and result messages. Fetch is read-only with respect to working files. Pull uses `--ff-only`. Push always asks before sending commits and never adds force flags.
+Adding A Remote Hides The URL In Confirmation And Result Messages. Fetch Is Read-Only With Respect To Working Files. Pull Uses --ff-only. Push Always Asks Before Sending Commits And Never Adds Force Flags.
+
+Project Management Also Supports GitHub URL Preflight, Remote Verification And Editing, Explicit Upstream Tracking, And A Read-Only Status Snapshot With Ahead/Behind Counts.
 
 ## Recovery
 
-Restore targets one explicitly named working-tree file and requires confirmation. Revert creates a new reversing commit. Reflog is available through the shared command explorer.
+Restore Targets One Explicitly Named Working-Tree File And Requires Confirmation. Revert Creates A New Reversing Commit. Reflog Is Available Through The Shared Command Explorer.
 
 ## All Commands
 
-The explorer derives command names from `git help -a`, categorizes recognized commands, and includes unclassified commands. Generic arguments are currently space-separated tokens; commands requiring special interactive input are not given dedicated wizards.
+The Explorer Derives Command Names From git help -a, Categorizes Recognized Commands, And Includes Unclassified Commands. Generic Arguments Are Currently Space-Separated Tokens; Commands Requiring Special Interactive Input Are Not Given Dedicated Wizards.

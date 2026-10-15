@@ -29,6 +29,17 @@ function New-MenuItem {
     if (-not $Value) { $Value = $Label }
     return @{ Label = $Label; Desc = $Desc; Value = $Value; Icon = $Icon; Enabled = $Enabled; Reason = $Reason }
 }
+function Get-MenuViewport {
+    # Returns the inclusive slice to draw. Large command inventories therefore keep
+    # navigation work proportional to the visible terminal area.
+    param([int]$Count, [int]$Selected, [int]$Capacity)
+    if ($Count -le 0) { return [pscustomobject]@{ Start = 0; End = -1 } }
+    $Capacity = [Math]::Max(1, [Math]::Min($Capacity, $Count))
+    $Selected = [Math]::Min([Math]::Max(0, $Selected), $Count - 1)
+    $start = [Math]::Max(0, $Selected - [Math]::Floor($Capacity / 2))
+    $start = [Math]::Min($start, $Count - $Capacity)
+    return [pscustomobject]@{ Start = $start; End = $start + $Capacity - 1 }
+}
 function Show-Menu {
     param([Parameter(Mandatory)][string]$Title, [string]$Description = '', [Parameter(Mandatory)][object[]]$Items, [int]$Default = 0,
           [ValidateSet('','Arrows','Numbers','Hybrid','Search')][string]$Navigation = '',
@@ -50,36 +61,43 @@ function Show-Menu {
                 $items[$i].Desc.IndexOf($query,[System.StringComparison]::OrdinalIgnoreCase) -ge 0) { $visible += $i }
         }
         if ($sel -ge $visible.Count) { $sel = [math]::Max(0,$visible.Count-1) }
+        $terminal = Get-TerminalSize
+        $rowsPerItem = 1
+        if ($DescriptionStyle -in @('Muted', 'Shade')) { $rowsPerItem++ }
+        if ($profile.Density -eq 'Spacious') { $rowsPerItem++ }
+        $capacity = [Math]::Max(5, [Math]::Floor(($terminal.Height - 9) / $rowsPerItem))
+        $viewport = Get-MenuViewport -Count $visible.Count -Selected $sel -Capacity $capacity
         Clear-Ui
         switch ($profile.Layout) {
             'Classic' { Write-UiLine ((Get-Icon 'Run') + '  ' + $Title) 'Title' }
-            'Assistant' { Write-UiLine ('  >  ' + $Title.ToUpperInvariant() + '    |    ready') 'Title' }
-            'Minimal' { Write-UiLine ('  ' + $Title.ToUpperInvariant()) 'Title' }
+            'Assistant' { Write-UiLine ('  >  ' + $Title + '    |    Ready') 'Title' }
+            'Minimal' { Write-UiLine ('  ' + $Title) 'Title' }
             'Palette' { Write-UiLine ('  /  ' + $Title + '  /') 'Title' }
-            'Retro' { Write-UiLine ('  [ ' + $Title.ToUpperInvariant() + ' ]') 'Title' }
-            'Wizard' { Write-UiLine ('  STEP  /  ' + $Title) 'Title' }
-            'Workbench' { Write-UiLine ('  WORKBENCH   /   ' + $Title) 'Title'; Write-UiLine '  ACTIONS                                  DETAILS' 'Dim' }
-            'Dashboard' { Write-UiLine ('  DASHBOARD   /   ' + $Title) 'Title'; Write-UiLine ('  Available actions: ' + $items.Count) 'Heading' }
-            'Split' { Write-UiLine ('  WORKSPACE   /   ' + $Title) 'Title'; Write-UiLine '  NAVIGATION                               CONTEXT' 'Dim' }
-            'Monitor' { Write-UiLine ('  ACTIVITY   /   ' + $Title) 'Title'; Write-UiLine ('  ' + $items.Count + ' actions available') 'Info' }
-            'Compact' { Write-UiLine ('  ' + $Title + '  /  actions') 'Title' }
-            'Editorial' { Write-UiLine ('  ' + $Title.ToUpperInvariant()) 'Title'; Write-UiLine '  Clear, focused tasks' 'Dim' }
-            'Neon' { Write-UiLine ('  [*]  ' + $Title.ToUpperInvariant() + '  [*]') 'Title' }
+            'Retro' { Write-UiLine ('  [ ' + $Title + ' ]') 'Title' }
+            'Wizard' { Write-UiLine ('  Step  /  ' + $Title) 'Title' }
+            'Workbench' { Write-UiLine ('  Workbench   /   ' + $Title) 'Title'; Write-UiLine '  Actions                                  Details' 'Dim' }
+            'Dashboard' { Write-UiLine ('  Dashboard   /   ' + $Title) 'Title'; Write-UiLine ('  Available Actions: ' + $items.Count) 'Heading' }
+            'Split' { Write-UiLine ('  Workspace   /   ' + $Title) 'Title'; Write-UiLine '  Navigation                               Context' 'Dim' }
+            'Monitor' { Write-UiLine ('  Activity   /   ' + $Title) 'Title'; Write-UiLine ('  ' + $items.Count + ' Actions Available') 'Info' }
+            'Compact' { Write-UiLine ('  ' + $Title + '  /  Actions') 'Title' }
+            'Editorial' { Write-UiLine ('  ' + $Title) 'Title'; Write-UiLine '  Clear, Focused Tasks' 'Dim' }
+            'Neon' { Write-UiLine ('  [*]  ' + $Title + '  [*]') 'Title' }
             'Slate' { Write-UiLine ('  ' + $Title + '  /  Workspace') 'Title' }
-            'Paper' { Write-UiLine ('  ' + $Title) 'Title'; Write-UiLine '  Explore options' 'Dim' }
-            'Operations' { Write-UiLine ('  OPERATIONS  ::  ' + $Title.ToUpperInvariant()) 'Title'; Write-UiLine ('  Commands: ' + $items.Count) 'Info' }
-            'Explorer' { Write-UiLine ('  /  ' + $Title + '  /') 'Title'; Write-UiLine '  Browse available actions' 'Dim' }
-            'Media' { Write-UiLine ('  WORKBENCH  ::  ' + $Title) 'Title' }
-            'Diagnostic' { Write-UiLine ('  CHECK  /  ' + $Title) 'Title'; Write-UiLine '  Review and select an action' 'Dim' }
-            'Onboarding' { Write-UiLine ('  GET STARTED  /  ' + $Title) 'Title'; Write-UiLine '  Select an option to continue' 'Dim' }
-            default { Write-UiLine ('  ' + $profile.Name.ToUpperInvariant() + '  /  ' + $Title) 'Title' }
+            'Paper' { Write-UiLine ('  ' + $Title) 'Title'; Write-UiLine '  Explore Options' 'Dim' }
+            'Operations' { Write-UiLine ('  Operations  ::  ' + $Title) 'Title'; Write-UiLine ('  Commands: ' + $items.Count) 'Info' }
+            'Explorer' { Write-UiLine ('  /  ' + $Title + '  /') 'Title'; Write-UiLine '  Browse Available Actions' 'Dim' }
+            'Media' { Write-UiLine ('  Workbench  ::  ' + $Title) 'Title' }
+            'Diagnostic' { Write-UiLine ('  Check  /  ' + $Title) 'Title'; Write-UiLine '  Review And Select An Action' 'Dim' }
+            'Onboarding' { Write-UiLine ('  Get Started  /  ' + $Title) 'Title'; Write-UiLine '  Select An Option To Continue' 'Dim' }
+            default { Write-UiLine ('  ' + $profile.Name + '  /  ' + $Title) 'Title' }
         }
-        if ($profile.Density -ne 'Compact') { Write-UiLine ('  ' + ('-' * [math]::Min(48,(Get-TerminalSize).Width-5))) 'Dim' }
+        if ($profile.Density -ne 'Compact') { Write-UiLine ('  ' + ('-' * [math]::Min(48,$terminal.Width-5))) 'Dim' }
         if ($Description) { Write-UiLine ('  ' + $Description) 'Dim' }
         if ($Navigation -eq 'Search') { Write-UiLine ('  Search: ' + $query + '_') 'Key' }
         if ($profile.Density -eq 'Spacious') { Write-UiLine '' }
-        if ($visible.Count -eq 0) { Write-UiLine '  No matching actions. Backspace to broaden the search.' 'Dim' }
-        for ($pos = 0; $pos -lt $visible.Count; $pos++) {
+        if ($visible.Count -eq 0) { Write-UiLine '  No Matching Actions. Press Backspace To Broaden The Search.' 'Dim' }
+        if ($visible.Count -gt $capacity) { Write-UiLine ('  Showing ' + ($viewport.Start + 1) + '-' + ($viewport.End + 1) + ' Of ' + $visible.Count) 'Dim' }
+        for ($pos = $viewport.Start; $pos -le $viewport.End; $pos++) {
             $it = $items[$visible[$pos]]
             $role = 'Normal'; $marker = ' '
             if ($pos -eq $sel) { $role = 'Selected'; $marker = '>' }
@@ -88,17 +106,17 @@ function Show-Menu {
             $ico = Get-Icon $it.Icon
             $prefix = ' ' + $marker + ' '
             if ($Navigation -in @('Numbers','Hybrid')) { $prefix += (Format-MenuNumber ($visible[$pos] + 1)) + '  ' }
-            if ($ico) { $prefix += $ico + '  ' }
             if ($profile.Layout -eq 'Explorer') { $prefix += '|-- ' }
             if ($profile.Layout -eq 'Diagnostic') { $prefix += '[ ] ' }
-            $isSplit = (($profile.Layout -in @('Split','Workbench')) -and (Get-TerminalSize).Width -ge 90)
+            $isSplit = (($profile.Layout -in @('Split','Workbench')) -and $terminal.Width -ge 90)
             if ($isSplit) {
-                $left = ($prefix + $it.Label)
+                $left = ($prefix + $ico + '  ' + $it.Label)
                 if ($left.Length -gt 36) { $left = $left.Substring(0,33) + '...' }
                 Write-Ui ($left.PadRight(39) + '| ') $role
                 if ($DescriptionStyle -ne 'Off') { Write-UiLine $d 'Dim' } else { Write-UiLine '' }
             } else {
                 Write-Ui $prefix $role
+                if ($ico) { Write-Ui ($ico + '  ') (Get-IconColor $it.Icon) }
                 Write-Ui $it.Label $role
                 if ($DescriptionStyle -eq 'Inline' -and $d) { Write-Ui ('  -  ' + $d) 'Dim' }
                 Write-UiLine ''
@@ -117,7 +135,7 @@ function Show-Menu {
         Write-UiLine ''
         if ($Navigation -ne 'Numbers') { Write-Ui 'Up/Down ' 'Key'; Write-Ui 'Navigate  ' 'Dim' }
         Write-Ui 'Enter ' 'Key'; Write-Ui 'Select  ' 'Dim'
-        if ($Navigation -in @('Numbers','Hybrid')) { Write-Ui '00-99 ' 'Key'; Write-Ui 'Type a number  ' 'Dim' }
+        if ($Navigation -in @('Numbers','Hybrid')) { Write-Ui '00-99 ' 'Key'; Write-Ui 'Type A Number  ' 'Dim' }
         if ($Navigation -eq 'Search') { Write-Ui 'Type ' 'Key'; Write-Ui 'Search  ' 'Dim' }
         Write-Ui 'Esc ' 'Key'; Write-UiLine 'Back' 'Dim'
         Complete-UiFrame
@@ -153,4 +171,4 @@ function Show-Menu {
         }
     }
 }
-Export-ModuleMember -Function Format-MenuNumber, Resolve-NumberInput, Set-TuiMenuStyle, Get-TuiMenuStyle, New-MenuItem, Show-Menu
+Export-ModuleMember -Function Format-MenuNumber, Resolve-NumberInput, Set-TuiMenuStyle, Get-TuiMenuStyle, New-MenuItem, Get-MenuViewport, Show-Menu

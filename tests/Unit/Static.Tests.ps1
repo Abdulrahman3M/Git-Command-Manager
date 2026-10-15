@@ -22,4 +22,11 @@ Assert-Equal 'no Invoke-Expression and no PowerShell-7-only operators' 0 $forbid
 Assert-Equal '$IsWindows/$IsLinux are read only in Platform.psm1' 0 $winVar.Count
 $bat = Get-ChildItem -LiteralPath $root -Filter '*.bat' -File | Select-Object -First 1
 if ($bat) { $b = [System.IO.File]::ReadAllBytes($bat.FullName); $lf = 0; for ($i = 1; $i -lt $b.Length; $i++) { if ($b[$i] -eq 10 -and $b[$i - 1] -ne 13) { $lf++ } }; Assert-Equal 'the .bat launcher has CRLF line endings' 0 $lf }
-Assert-True 'VERSION is a Semantic Version' ((Get-Content -LiteralPath (Join-Path $root 'VERSION') -TotalCount 1) -match '^\d+\.\d+\.\d+')
+$versionText = (Get-Content -LiteralPath (Join-Path $root 'VERSION') -Raw).Trim()
+Assert-True 'VERSION is exactly MAJOR.MINOR.PATCH' ($versionText -match '^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*)(?:\.(?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*))*))?(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?$')
+Assert-Equal 'runtime application version matches VERSION' $versionText (Get-AppVersion $root)
+$readmeText = [IO.File]::ReadAllText((Join-Path $root 'README.md'))
+Assert-True 'README title and version match the application name and VERSION' ($readmeText -match '(?m)^# Git Command Manager$' -and $readmeText -match ('(?m)^Git Command Manager - v' + [regex]::Escape($versionText) + '$'))
+Assert-True 'README leads with the official project header image' ($readmeText -match '(?m)^!\[Git Command Manager Official Header\]\(assets/Git-Command-Manager-Header\.png\)$' -and (Test-Path -LiteralPath (Join-Path $root 'assets/Git-Command-Manager-Header.png')))
+$changelogText = [IO.File]::ReadAllText((Join-Path $root 'CHANGELOG.md'))
+Assert-True 'top changelog release matches VERSION' ($changelogText -match ('(?m)^## \[' + [regex]::Escape($versionText) + '\] - '))

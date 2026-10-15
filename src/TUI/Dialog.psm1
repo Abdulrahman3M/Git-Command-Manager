@@ -3,7 +3,7 @@ Set-StrictMode -Version 2.0
 
 function Show-Confirm {
     # Returns $true / $false. Esc counts as No. Both answers are described so the user knows what each does.
-    param([Parameter(Mandatory)][string]$Title, [string]$Message = '', [string]$YesLabel = 'Yes', [string]$YesDesc = 'Go ahead.', [string]$NoLabel = 'No', [string]$NoDesc = 'Do nothing and go back.', [bool]$Default = $true)
+    param([Parameter(Mandatory)][string]$Title, [string]$Message = '', [string]$YesLabel = 'Yes', [string]$YesDesc = 'Go Ahead.', [string]$NoLabel = 'No', [string]$NoDesc = 'Do Nothing And Go Back.', [bool]$Default = $true)
     $items = @(
         (New-MenuItem -Label $YesLabel -Desc $YesDesc -Value 'yes' -Icon 'Yes'),
         (New-MenuItem -Label $NoLabel -Desc $NoDesc -Value 'no' -Icon 'No')
@@ -17,7 +17,7 @@ function Show-Notice {
     param([Parameter(Mandatory)][string]$Title, [string[]]$Lines = @(), [ValidateSet('Info', 'Success', 'Warning', 'Error')][string]$Kind = 'Info', [string]$ContinueLabel = 'Continue')
     $msg = (($Lines | ForEach-Object { $_ }) -join ' ')
     $icon = Get-Icon $Kind
-    [void](Show-Menu -Title ($icon + '  ' + $Title) -Description $msg -Items @((New-MenuItem -Label $ContinueLabel -Desc 'Close this message.' -Value 'ok' -Icon $Kind)))
+    [void](Show-Menu -Title ($icon + '  ' + $Title) -Description $msg -Items @((New-MenuItem -Label $ContinueLabel -Desc 'Close This Message.' -Value 'ok' -Icon $Kind)))
 }
 
 Export-ModuleMember -Function Show-Confirm, Show-Notice

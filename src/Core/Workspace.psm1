@@ -14,7 +14,15 @@ function Get-GitWorkspaceState {
     $branchResult = Invoke-Git -Arguments @('symbolic-ref','--short','-q','HEAD') -WorkingDirectory $full -TimeoutSec 10
     $status = Invoke-Git -Arguments @('status','--porcelain=v1','-z','--branch') -WorkingDirectory $full -TimeoutSec 15
     $staged=0; $unstaged=0; $untracked=0; $entries=@($status.StdOut -split [char]0)
-    foreach ($entry in $entries) { if ($entry.Length -lt 3 -or $entry.StartsWith('##')) { continue }; $x=$entry.Substring(0,1); $y=$entry.Substring(1,1); if ($x -eq '?' -and $y -eq '?') { $untracked++; continue }; if ($x -ne ' ') { $staged++ }; if ($y -ne ' ') { $unstaged++ } }
+    for ($entryIndex=0; $entryIndex -lt $entries.Count; $entryIndex++) {
+        $entry=$entries[$entryIndex]
+        if ($entry.Length -lt 3 -or $entry.StartsWith('##')) { continue }
+        $x=$entry.Substring(0,1); $y=$entry.Substring(1,1)
+        if ($x -eq '?' -and $y -eq '?') { $untracked++; continue }
+        if ($x -ne ' ') { $staged++ }
+        if ($y -ne ' ') { $unstaged++ }
+        if ($x -in @('R','C') -or $y -in @('R','C')) { $entryIndex++ }
+    }
     $head = (Invoke-Git -Arguments @('rev-parse','--short','HEAD') -WorkingDirectory $full -TimeoutSec 10).StdOut.Trim()
     $remotesResult = Invoke-Git -Arguments @('remote') -WorkingDirectory $full -TimeoutSec 10
     $remotes = @($remotesResult.StdOut -split "`r?`n" | Where-Object { $_ })

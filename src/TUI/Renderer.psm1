@@ -60,7 +60,15 @@ function Write-Ui {
         if ($script:FrameStarted) { [void]$script:PendingFrame.Append($styled) }
         else { [Console]::Out.Write($styled) }
     }
-    else { Write-Host $Text -NoNewline -ForegroundColor $st.Legacy }
+    else {
+        # Collect legacy frames too. Repainting directly through Write-Host made each
+        # arrow key redraw every menu row and caused the visible navigation delay.
+        if ($script:FrameStarted) {
+            [void]$script:PendingFrame.Append([char]1).Append($Role).Append([char]2).Append($Text)
+        } else {
+            Write-Host $Text -NoNewline -ForegroundColor $st.Legacy
+        }
+    }
 }
 
 function Write-UiLine { param([AllowEmptyString()][string]$Text = '', [string]$Role = 'Normal') Write-Ui $Text $Role; Write-Ui "`n" 'Normal' }
@@ -68,11 +76,7 @@ function Write-UiLine { param([AllowEmptyString()][string]$Text = '', [string]$R
 function Clear-Ui {
     # Starts an in-place frame. Do not clear a visible screen on every keypress.
     if ($script:Sink -eq 'Buffer') { [void]$script:Buffer.Append("`n=====CLEAR=====`n"); return }
-    if ($script:Ansi) { $script:PendingFrame = New-Object System.Text.StringBuilder }
-    else {
-        try { [Console]::SetCursorPosition(0, 0) }
-        catch { try { Clear-Host } catch { } }
-    }
+    $script:PendingFrame = New-Object System.Text.StringBuilder
     $script:FrameStarted = $true
 }
 
@@ -104,18 +108,32 @@ function Complete-UiFrame {
             $script:PreviousRows = $rows
             $script:PreviousViewport = $viewport
         } else {
-            # Legacy console: remove characters from the old, longer frame.
-            try {
-                $left = [Console]::CursorLeft; $top = [Console]::CursorTop
-                $width = [Console]::WindowWidth; $height = [Console]::WindowHeight
-                if ($top -lt $height) {
-                    [Console]::Out.Write(' ' * [Math]::Max(0,$width - $left - 1))
-                    for ($row = $top + 1; $row -lt $height; $row++) {
-                        [Console]::SetCursorPosition(0,$row)
-                        [Console]::Out.Write(' ' * [Math]::Max(0,$width - 1))
+            # Use the same row diff as ANSI, while retaining ConsoleColor styling.
+            # The control separators are retained in the cache and never displayed.
+            $frame = $script:PendingFrame.ToString()
+            $rows = @($frame -split "`n")
+            if ($frame.EndsWith("`n") -and $rows.Count -gt 0) { $rows = @($rows | Select-Object -SkipLast 1) }
+            $size = Get-TerminalSize
+            foreach ($i in @(Get-UiChangedRows -Before $script:PreviousRows -After $rows)) {
+                if ($i -ge $size.Height - 1) { continue }
+                try {
+                    [Console]::SetCursorPosition(0, $i)
+                    [Console]::Out.Write(' ' * [Math]::Max(0, $size.Width - 1))
+                    [Console]::SetCursorPosition(0, $i)
+                    $parts = $rows[$i] -split ([string][char]1)
+                    foreach ($part in $parts) {
+                        if (-not $part) { continue }
+                        $separator = $part.IndexOf([char]2)
+                        if ($separator -lt 0) { continue }
+                        $role = $part.Substring(0, $separator)
+                        $text = $part.Substring($separator + 1)
+                        [Console]::ForegroundColor = (Get-RoleStyle $role).Legacy
+                        [Console]::Out.Write($text)
                     }
-                }
-            } catch { }
+                    [Console]::ResetColor()
+                } catch { }
+            }
+            $script:PreviousRows = $rows
         }
     } finally {
         $script:FrameStarted = $false
