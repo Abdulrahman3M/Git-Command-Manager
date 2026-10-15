@@ -1,0 +1,7 @@
+{
+  "preset": "task-dashboard",
+  "navigation": "Arrows",
+  "icons": "Auto",
+  "colors": "Full",
+  "descriptions": "Muted"
+}
